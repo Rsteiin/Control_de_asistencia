@@ -1,0 +1,44 @@
+h1{
+    color:black;
+    text-align: center;
+    margin-top: 2%;
+    font-weight: bold;
+}
+mat-grid-list{
+    width: 100%;
+    div{
+        color: black;
+        width: 100%;
+        margin:2% ;
+        mat-grid-tile{
+            width: 10%;
+            mat-grid-tile-header{
+                height: 25%;
+                font-size: large;
+                font-style: italic;
+            }
+            mat-list-option{
+                margin-top: 20%;
+                width: 60%;
+                height: 50%;
+                text-align: right;
+                .consola{
+                text-align: center;
+                }
+                .institucion{
+                    font-size: small;
+                }
+            }
+        }
+        
+    }
+    .boton-guardar{
+        margin-top: 90%;
+        width: 70%;
+        height: 50px;
+        font-size: large;
+    
+    }
+    
+}
+

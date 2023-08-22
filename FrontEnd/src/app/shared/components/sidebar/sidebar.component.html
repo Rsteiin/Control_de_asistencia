@@ -1,0 +1,96 @@
+<ng-container *ngIf=" Role ==='ADMINISTRADOR'; else viewOperaciones">
+    <mat-nav-list>
+        <a mat-list-item routerLink="/administrador">
+            <mat-icon>
+                insert_chart_outlined
+            </mat-icon>
+            <span class="nav-link">Dashboard</span>
+        </a>
+        <a mat-list-item routerLink="/administrador/usuarios">
+            <mat-icon>
+                people
+            </mat-icon>
+            <span class="nav-link">Gestión de usuarios</span>
+        </a>
+    </mat-nav-list>
+</ng-container>
+<ng-template #viewOperaciones>
+    <mat-nav-list>
+        <div mat-subheader>Resumen</div>
+        <a mat-list-item routerLink="/operaciones">
+            <mat-icon>
+                view_list
+            </mat-icon>
+            <span class="nav-link">Detalle</span>
+        </a>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Instituciones articuladas</div>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">A.M.T</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">A.N.T</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">C.A.C.M</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">C.O.E</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">C.R.E</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">EMASEO</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">F.F.A.A</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">I.E.S.S</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">M.S.P Z9</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">M.S.P Z2</span>
+        </a>
+        <a mat-list-item routerLink="/operaciones/institucion">
+            <mat-icon>
+                domain
+            </mat-icon>
+            <span class="nav-link">P.P.N.N</span>
+        </a>
+    </mat-nav-list>
+</ng-template>    
+    

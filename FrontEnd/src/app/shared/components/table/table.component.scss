@@ -1,0 +1,16 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    color:black;
+    .mat-input-underline{
+      color:blue
+    }
+    mat-label,mat-input{
+      color:black;
+    }
+  }

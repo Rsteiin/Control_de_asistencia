@@ -1,0 +1,39 @@
+<div class="login-form">
+    <mat-card>
+        <mat-card-content>
+            <h1 class="title">Ingreso</h1>
+            <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+                <mat-form-field class ="full-width-input">
+                    <input 
+                    type="text" 
+                    formControlName = "usuario"
+                    matInput placeholder="Usuario" 
+                    required>
+                    <mat-error *ngIf="isValidField('usuario')">
+                    {{getMessageError('usuario')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class ="full-width-input separator">
+                    <input 
+                    [type]="hide ?'password':'text' "
+                    formControlName = "contrasena"
+                    matInput placeholder="Contraseña" 
+                    required>
+                    <button  type= "button" mat-icon-button matSuffix (click)="hide = !hide">
+                        <mat-icon>
+                            {{hide ? "visibility_off" : "visibility"}}
+                        </mat-icon>
+                    </button>
+                    <mat-error *ngIf="isValidField('contrasena')">
+                        {{getMessageError('contrasena')}}
+                        </mat-error>
+                </mat-form-field>
+                <button
+                [disabled]="signInForm.invalid"
+                mat-raised-button type ="submit"  color="primary" >
+                Iniciar sesión
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

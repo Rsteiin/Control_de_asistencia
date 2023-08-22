@@ -1,0 +1,38 @@
+<mat-form-field appearance="standard" mat-input-lin>
+  <mat-label>Buscar en tabla</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 8301" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="Consola">
+      <th mat-header-cell *matHeaderCellDef> Consola</th>
+      <td mat-cell *matCellDef="let element"> {{element.consola}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="Area">
+      <th mat-header-cell *matHeaderCellDef> Area </th>
+      <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Inasistencias">
+      <th mat-header-cell *matHeaderCellDef> Inasistencias </th>
+      <td mat-cell *matCellDef="let element"> {{element.inasistencias}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Porcentaje/Numero de dias">
+      <th mat-header-cell *matHeaderCellDef> Porcentaje </th>
+      <td mat-cell *matCellDef="let element"> {{element.porcentaje}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

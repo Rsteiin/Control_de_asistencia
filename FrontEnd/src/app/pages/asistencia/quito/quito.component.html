@@ -1,0 +1,31 @@
+<h1 >Control de asistencia - Sala de video monitoreo (Quito)</h1>
+<mat-grid-list cols="12" rowHeight="600px">
+    <mat-grid-tile [colspan]="10">
+        <div>
+            <mat-grid-list cols="6" rowHeight="100px"
+            gutterSize="15px">
+                <mat-selection-list #list
+                [(ngModel)]="selectedOptions"
+                (ngModelChange)="onNgModelChange($event)"
+                >
+                    <mat-grid-tile
+                        *ngFor="let consola of consolas"
+                        [colspan]="1"
+                        [rowspan]="1"
+                        [style.background]="'#A28F88'">
+                        <mat-grid-tile-header>
+                            <h5>Consola - {{consola.consola}}</h5>
+                        </mat-grid-tile-header>
+                        <mat-icon  matSuffix>desktop_windows</mat-icon>    
+                        <mat-list-option  value={{consola.consola}}>
+                            <div class = "institucion"mat-line>{{consola.institucion}}</div>
+                        </mat-list-option>    
+                    </mat-grid-tile>
+                </mat-selection-list>
+            </mat-grid-list>  
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+        <button   class ="boton-guardar" mat-raised-button type ="submit"  color="primary" (click)="openDialog()" >Guardar</button>
+    </mat-grid-tile>
+  </mat-grid-list>
