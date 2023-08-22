@@ -13,6 +13,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const myModules = [
     MatToolbarModule,
@@ -28,7 +29,8 @@ const myModules = [
     MatButtonToggleModule,
     MatDialogModule,
     MatTreeModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
 ];
 
 @NgModule({

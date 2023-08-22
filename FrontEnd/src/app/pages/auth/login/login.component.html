@@ -29,10 +29,21 @@
                         </mat-error>
                 </mat-form-field>
                 <button
-                [disabled]="signInForm.invalid"
-                mat-raised-button type ="submit"  color="primary" >
-                Iniciar sesión
+                    *ngIf = "!isLoading"
+                    [disabled]="signInForm.invalid"
+                    mat-raised-button type ="submit"  color="primary" >
+                    Iniciar sesión
                 </button>
+                <div
+                *ngIf = "isLoading"
+                style="width: 100%; display: flex; justify-content: center;"
+                >
+                <mat-spinner
+                [diameter] = 38
+                style="display: flex; justify-content: center; "
+                [color]="colorLoading"
+                ></mat-spinner>
+            </div>
             </form>
         </mat-card-content>
     </mat-card>

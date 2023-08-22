@@ -38,7 +38,7 @@ export class AuthService {
     return this.http.post<RespuestaUsuario>( `${environment.API_URL}/api/auth/signin`,authData)
     .pipe(
       map((res: RespuestaUsuario)=>{
-        console.log('Respuesta del servidor', res)
+        console.log('Respuesta del servidor', res);
         this.saveLocalStorage(res);
         this.loggedIn.next(true);
         this.role.next(res.rol);
@@ -75,18 +75,17 @@ export class AuthService {
         this.role.next(usuario.rol);
       }
     }
-  }
-
-
+  };
 
   private hadlerError(err:any):Observable<never>{
-    let mesajeError = 'Eorr Ocurrido';
+    let mesajeError = 'Error Ocurrido';
     if(err){
       mesajeError= `Error: code ${err.mensaje}`;
-    } 
-    window.alert(mesajeError);
+    }
+    if(err.statusText === "Unknown Error"){
+      //window.alert("Ha ocurrido un error al autenticar al usuario.");
+    }
     return  throwError(mesajeError);
-
-  }
+  };
 
 }

@@ -4,6 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 
+import {ThemePalette} from '@angular/material/core';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,35 +14,38 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 export class LoginComponent implements OnInit, OnDestroy {
   hide = true;
   Role : any = " ";
-  
-  private isValidUsuario = /\S+@ecu\.gob.ec/;
+  isLoading = false ; 
+  colorLoading: ThemePalette = "primary"
+  //private isValidUsuario = /\S+@ecu\.gob.ec/;
+  private isValidUsuario = /\S+/;
   private suscription: Subscription = new Subscription();
   private destroy$ = new Subject<any>();
 
   signInForm = this.fb.group({
     usuario:['',[Validators.required,Validators.pattern(this.isValidUsuario)]],
-    contrasena:['',[Validators.required,Validators.minLength(9)]]
+    contrasena:['',[Validators.required,Validators.minLength(1)]]
   });
   constructor( private authSvc:AuthService, 
     private fb:FormBuilder, 
     private router:Router) {
-
-   }
+   };
 
   ngOnInit(): void {      
-  }
+  };
 
   ngOnDestroy(): void {
     this.suscription.unsubscribe();
     this.destroy$.next({});
     this.destroy$.complete();
-  }
+  };
 
   onSignIn():void{
     if(this.signInForm.invalid){
       return;
     }
     const formvalue = this.signInForm.value;
+    this.isLoading = true;
+
     this.suscription.add(
       this.authSvc.signIn(formvalue).subscribe(res=>{
       if(res){
@@ -54,7 +59,12 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['/operaciones']);
         }
       }
-    })
+    }, 
+    err =>
+     {
+      this.isLoading = false;
+      console.log("Termino de cargar hacer aglo con el errro",err)
+     })
     );
   };
 
@@ -63,17 +73,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     if(this.signInForm.get(campo)?.hasError('required')){
       message = 'Campo requerido';
     }else if(this.signInForm.get(campo)?.hasError('pattern')){
-      message = 'Ingrese un email válido';
+      message = 'Ingrese un mail institucional válido';
     }else if(this.signInForm.get(campo)?.hasError('minlength')){
       message = 'Campo requerido';
     }
     return message;
-  }
+  };
 
   isValidField(campo:string):boolean|undefined{
     let comprobar = this.signInForm.get(campo);
     return (comprobar?.touched || comprobar?.dirty) &&  !comprobar?.valid;
-  }
+  };
 
-
-}
+};
