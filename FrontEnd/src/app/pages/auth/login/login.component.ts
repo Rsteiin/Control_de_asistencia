@@ -12,12 +12,13 @@ import {ThemePalette} from '@angular/material/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  //variables para validación
   hide = true;
   Role : any = " ";
   isLoading = false ; 
-  colorLoading: ThemePalette = "primary"
-  //private isValidUsuario = /\S+@ecu\.gob.ec/;
-  private isValidUsuario = /\S+/;
+  colorLoading: ThemePalette = "primary";
+  private isValidUsuario = /\S+@ecu\.gob.ec/;
+  //private isValidUsuario = /\S+/;
   private suscription: Subscription = new Subscription();
   private destroy$ = new Subject<any>();
 
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     err =>
      {
       this.isLoading = false;
-      console.log("Termino de cargar hacer aglo con el errro",err)
+      window.alert("Ha ocurrido un error al conectar con el servidor.");
      })
     );
   };

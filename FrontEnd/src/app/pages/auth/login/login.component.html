@@ -6,16 +6,19 @@
                 <mat-form-field class ="full-width-input">
                     <input 
                     type="text" 
+                    [readonly] = "isLoading"
                     formControlName = "usuario"
                     matInput placeholder="Usuario" 
-                    required>
+                    required
+                    >
                     <mat-error *ngIf="isValidField('usuario')">
                     {{getMessageError('usuario')}}
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class ="full-width-input separator">
                     <input 
-                    [type]="hide ?'password':'text' "
+                    [type] = "hide ?'password':'text' "
+                    [readonly] = "isLoading"
                     formControlName = "contrasena"
                     matInput placeholder="Contraseña" 
                     required>
