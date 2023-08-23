@@ -9,15 +9,15 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<any>();
-  Role:any= null;
-  isSignIn=false;
+  Role:any = null;
+  isSignIn = false;
   @Output() toggleSidenav = new EventEmitter<void>();
   
   constructor(private authSvc: AuthService) {}
 
   ngOnInit(): void {
     this.authSvc.isLogged.pipe(takeUntil(this.destroy$))
-    .subscribe((res)=>(this.isSignIn=res))
+    .subscribe((res)=>(this.isSignIn = res))
     this.authSvc.isRole$.pipe(takeUntil(this.destroy$)).
     subscribe((res)=>(this.Role=res))
   }
