@@ -2,10 +2,13 @@ import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { RespuestaUsuario,Usuario,Roles,Zonal } from '@app/shared/models/user.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { UtilsService } from '@app/shared/services/utils.service';
+
+//models 
+import { RespuestaUsuario, Usuario, Roles, Zonal } from '@app/shared/models/user.interface';
+import { APIError } from '@app/shared/models/error.interface';
 
 const helper = new JwtHelperService();
 
@@ -34,10 +37,10 @@ export class AuthService {
     return this.zonal.asObservable();
   }
 
-  signIn(authData:Usuario):Observable<RespuestaUsuario | void>{
-    return this.http.post<RespuestaUsuario>( `${environment.API_URL}/api/auth/signin`,authData)
+  signIn(authData:Usuario):Observable<RespuestaUsuario | void | APIError >{
+    return this.http.post<RespuestaUsuario>( `${environment.API_URL}/api/signIn`,authData)
     .pipe(
-      map((res: RespuestaUsuario)=>{
+      map((res: RespuestaUsuario )=>{
         console.log('Respuesta del servidor', res);
         this.saveLocalStorage(res);
         this.loggedIn.next(true);
@@ -57,7 +60,7 @@ export class AuthService {
   }
 
   private saveLocalStorage(user:RespuestaUsuario):void{
-    const {id,usuario, ...rest} = user;
+    const {usuario_id, usuario, ...rest} = user;
     localStorage.setItem('user',JSON.stringify(rest));
 
   }
@@ -78,14 +81,7 @@ export class AuthService {
   };
 
   private hadlerError(err:any):Observable<never>{
-    let mesajeError = 'Error Ocurrido';
-    if(err){
-      mesajeError= `Error: code ${err.mensaje}`;
-    }
-    if(err.statusText === "Unknown Error"){
-      //window.alert("Ha ocurrido un error al autenticar al usuario.");
-    }
-    return  throwError(mesajeError);
+    return  throwError(err.status);
   };
 
 }

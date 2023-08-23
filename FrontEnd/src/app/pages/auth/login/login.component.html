@@ -15,7 +15,7 @@
                     {{getMessageError('usuario')}}
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class ="full-width-input separator">
+                <mat-form-field class ="full-width-input">
                     <input 
                     [type] = "hide ?'password':'text' "
                     [readonly] = "isLoading"
@@ -31,12 +31,15 @@
                         {{getMessageError('contrasena')}}
                         </mat-error>
                 </mat-form-field>
-                <button
-                    *ngIf = "!isLoading"
-                    [disabled]="signInForm.invalid"
-                    mat-raised-button type ="submit"  color="primary" >
-                    Iniciar sesión
-                </button>
+                <div style=" margin-top: 1rem; display: flex; flex-direction: column;  align-items: center;">
+                    <button
+                        *ngIf = "!isLoading"
+                        [disabled]="signInForm.invalid"
+                        mat-raised-button type ="submit"  color="primary" >
+                        Iniciar sesión
+                    </button>                
+                </div>
+                <div *ngIf="isError" style=" margin-top: 1rem; color: #FF8A65;">Correo o contraseña incorrectas</div>
                 <div
                 *ngIf = "isLoading"
                 style="width: 100%; display: flex; justify-content: center;"
@@ -46,6 +49,7 @@
                 style="display: flex; justify-content: center; "
                 [color]="colorLoading"
                 ></mat-spinner>
+
             </div>
             </form>
         </mat-card-content>

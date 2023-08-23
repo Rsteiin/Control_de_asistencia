@@ -11,14 +11,17 @@ import {ThemePalette} from '@angular/material/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
   //variables para validación
   hide = true;
   Role : any = " ";
   isLoading = false ; 
   colorLoading: ThemePalette = "primary";
+  isError = false;
+
   private isValidUsuario = /\S+@ecu\.gob.ec/;
-  //private isValidUsuario = /\S+/;
+  //private isValidUsuario = /\S/;
   private suscription: Subscription = new Subscription();
   private destroy$ = new Subject<any>();
 
@@ -26,6 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     usuario:['',[Validators.required,Validators.pattern(this.isValidUsuario)]],
     contrasena:['',[Validators.required,Validators.minLength(1)]]
   });
+
   constructor( private authSvc:AuthService, 
     private fb:FormBuilder, 
     private router:Router) {
@@ -46,12 +50,22 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     const formvalue = this.signInForm.value;
     this.isLoading = true;
+    this.isError = false;
 
     this.suscription.add(
+
       this.authSvc.signIn(formvalue).subscribe(res=>{
       if(res){
+        
         this.authSvc.isRole$.pipe(takeUntil(this.destroy$)).
-        subscribe((res)=>(this.Role = res?.toString()));
+        subscribe((res)=>(
+          console.log(res),
+          this.Role = res
+        ));
+
+        if(this.Role === "ADMINISTRADOR"){
+          this.router.navigate(['/home'])
+        }
         if(this.Role ==='VIDEOVIGILANCIA'){
           this.router.navigate(['/asistencia']);
         }else if(this.Role === 'ADMINISTRADOR'){
@@ -64,7 +78,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     err =>
      {
       this.isLoading = false;
-      window.alert("Ha ocurrido un error al conectar con el servidor.");
+      if(err === 403){
+        this.isError = true;
+      }
+      if(err === 0){
+        window.alert("Ha ocurrido un error al conectar con el servidor.");
+      }
      })
     );
   };

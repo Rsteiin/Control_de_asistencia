@@ -7,12 +7,15 @@ const generateAccessToken = (username) => {
 };
 
 const validator = (password,baseHash) =>{
-  return bcrypt.compareSync(password, baseHash.replace("$2y$", "$2a$"));
+  return bcrypt.compareSync(password, baseHash);
 }
 
 const checkCredentials = (result,password) =>{
   if (result.length > 0){
-    if(validator(password, result[0].password)){
+    if(validator(password, result[0].contrasena)){
+      if(result[0].estado === 0){
+        return false;
+      }
       return true;
     }
   }
@@ -20,53 +23,64 @@ const checkCredentials = (result,password) =>{
 }
 
 const apiController = {
-  createToken: async (req,res) => {
-    const {u, p} = req.body;
 
-    if(u===undefined || p===undefined){
-
-      return res.status(400).json({
+  signIn: async (req,res) => {
+    const {usuario, contrasena} = req.body;
+    const correo = usuario;
+    
+    if(correo === undefined || contrasena === undefined){
+      return res.status(401).json({
         success : false,
-        access : "denied",
-        status : "No credentials"
+        error : "Bad request",
+        message : "No existen credenciales" 
       });
-
     }
-    const strSqlAdmin = `SELECT password  FROM man_user mu
-    WHERE username ='admin'
-    AND status = '0'`;
+
     try{
-      let resultAdmin = await con.query(strSqlAdmin);
-      if(checkCredentials(resultAdmin,p)){
-        return res.status(200).json({
-            success : validator,
-            access : "granted",
-            token : generateAccessToken({u})
-        });
-      }
-      const strSqlUser = `SELECT password  FROM man_user mu
-      WHERE username = ?
-      AND status = '0'`;
-      let resultUser= await con.query(strSqlUser,[u]);
-      if(checkCredentials(resultUser,p)){
+      const strSqlUser = `
+      SELECT 
+      u.usuario_id,
+      CONCAT(ifnull(u.nombre,""),' ',ifnull(u.segundo_nombre,"")) AS apellido,
+      CONCAT(ifnull(u.apellido,""),' ',ifnull(u.segundo_apellido,"")) AS apellido,
+      u.correo,
+      u.rol,
+      u.estado,
+      u.contrasena,
+      z.zonal_id,
+      z.nombre AS zonal,
+      z.area 
+      FROM usuarios u
+      LEFT JOIN zonales z on z.zonal_id = u.zonal_id 
+      WHERE correo = ?`;
+      
+      let resultUser = await con.query(strSqlUser,[correo]);
+
+      if(checkCredentials(resultUser,contrasena)){
         return res.status(200).json({
           success : validator,
-          access : "granted",
-          token : generateAccessToken({u})
+          access : "Authorizado",
+          usuario_id: resultUser[0]?.usuario_id,
+          nombre: resultUser[0]?.nombre,
+          apellido: resultUser[0]?.apellido,
+          correo: resultUser[0]?.correo,
+          rol: resultUser[0]?.rol,
+          estado: resultUser[0]?.estado,
+          zonal_id: resultUser[0]?.zonal_id,
+          zonal: resultUser[0]?.zonal,
+          area: resultUser[0]?.area,
+          token : generateAccessToken({correo})
         });
       } 
       return res.status(403).json({
         success : false,
-        access : "denied",
-        status : "username||password incorrect"
+        error : "Denegado",
+        message : "Credenciales incorrectas"
       }); 
     }catch(e){
-      console.log(e)
       return res.status(500).json({
         success :false,
-        access : "denied",
         error : e, 
-        type:"Validator"
+        message: "Validator"
       })
     }
   },

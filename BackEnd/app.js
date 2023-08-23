@@ -6,13 +6,12 @@ const cors = require("cors");
 
 //Importing routes for request
 const api = require("./routes/api");
-const person = require("./routes/person");
 //Start server with express
 const app = express();
 
 // IP/URL accepted
 const whitelist = [
-  "http://localhost:4200/"
+  "http://localhost:4200"
 ];
 //Request controller with the whiteList
 const corsOptions = {
@@ -35,8 +34,6 @@ app.use(express.json());
 
 //(URL) Routes
 app.use("/api", api);
-//Personas
-app.use("/person", person);
 
 //Get port number from .env
 const port = process.env.PORT_SERVER || 3000;

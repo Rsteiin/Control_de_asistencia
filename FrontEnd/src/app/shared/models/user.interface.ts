@@ -7,7 +7,7 @@ export interface Usuario{
 } 
 
 export interface RespuestaUsuario{
-    id: string;
+    usuario_id: string;
     nombre: string;
     apellido: string;
     usuario:string;
