@@ -10,10 +10,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatTreeModule} from '@angular/material/tree';
-import {MatTableModule} from '@angular/material/table';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from "@angular/material/paginator"; 
+
 
 const myModules = [
     MatToolbarModule,
@@ -30,7 +32,8 @@ const myModules = [
     MatDialogModule,
     MatTreeModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
 ];
 
 @NgModule({

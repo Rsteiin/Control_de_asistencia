@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   colorLoading: ThemePalette = "primary";
   isError = false;
 
-  private isValidUsuario = /\S+@ecu\.gob.ec/;
-  //private isValidUsuario = /\S/;
+  //private isValidUsuario = /\S+@ecu\.gob.ec/;
+  private isValidUsuario = /\S/;
   private suscription: Subscription = new Subscription();
   private destroy$ = new Subject<any>();
 
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
 
   onSignIn():void{
-    if(this.signInForm.invalid){
+   if(this.signInForm.invalid){
       return;
     }
     const formvalue = this.signInForm.value;
@@ -64,8 +64,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         ));
 
         if(this.Role === "ADMINISTRADOR"){
-          this.router.navigate(['/home'])
+          this.router.navigate(['/administrador/usuarios'])
         }
+        return;
         if(this.Role ==='VIDEOVIGILANCIA'){
           this.router.navigate(['/asistencia']);
         }else if(this.Role === 'ADMINISTRADOR'){
@@ -86,6 +87,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
      })
     );
+      //        this.router.navigate(['/administrador/usuarios'])
   };
 
   getMessageError(campo:string){

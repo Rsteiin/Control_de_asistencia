@@ -1,11 +1,13 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-    <mat-toolbar>Menu</mat-toolbar>
+  <mat-sidenav  style="width: 17%;" #sidenav mode="side" [(opened)]="opened">
+    <mat-toolbar >Menu</mat-toolbar>
     <app-sidebar></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
-    <router-outlet></router-outlet>
+    <app-header style="height: 10%;" (toggleSidenav)="sidenav.toggle()"></app-header>
+    <div style="height: 90%; background-color: #EBEDEF;">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

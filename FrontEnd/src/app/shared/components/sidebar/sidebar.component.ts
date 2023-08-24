@@ -10,16 +10,16 @@ import { Subject, takeUntil } from 'rxjs';
 export class SidebarComponent implements OnInit, OnDestroy {
   Role:any=null;
   private destroy$ = new Subject<any>();
+  
   constructor(private authSvc: AuthService) { }
 
   ngOnInit(): void {
     this.authSvc.isRole$.pipe(takeUntil(this.destroy$)).
     subscribe((res)=>(this.Role=res));
   }
+  
   ngOnDestroy(): void {
     this.destroy$.next({});
     this.destroy$.complete();
   }
-
-
 }
