@@ -7,7 +7,7 @@
       <div style="display: flex; flex-direction: row; box-sizing: border-box;">
         <mat-form-field appearance="standard" style="color: black; width: 70%; padding:0rem 0rem 0 3rem;">
           <mat-label>Buscar usuario</mat-label>
-          <input matInput placeholder="Ex. Mia" #input>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
         </mat-form-field>
         <div style="width: 30%; display: flex; align-items: center; justify-content: end; padding-right: 3rem;">
           <button style="width: 70%;" mat-raised-button color="primary">Nuevo usuario</button>

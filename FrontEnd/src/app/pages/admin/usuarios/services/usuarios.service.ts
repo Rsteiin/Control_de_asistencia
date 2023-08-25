@@ -29,7 +29,7 @@ export class UsuariosService {
 
   changeStatus(user:Usuario){
     const headers = new HttpHeaders().set("x-access-token",`${JSON.parse(localStorage.getItem('user')||'{}').token}`);
-    return this.http.post<Response>(`${environment.API_URL}/users/getUsers`,{usuario_id:user.usuario_id, estado: user.estado === 0 ? 1 : 0}, {'headers':headers})
+    return this.http.post<Response>(`${environment.API_URL}/users/changeStatus`,{usuario_id:user.usuario_id, estado: user.estado === 0 ? 1 : 0}, {'headers':headers})
     .pipe(
       map((res: RespuestaUsuarios | any ) => {
         return res;

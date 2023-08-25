@@ -8,7 +8,9 @@ import { Subject, Subscription, takeUntil } from 'rxjs';
 import { ConfirmDialogComponent } from '@app/shared/components/confirm-dialog/confirm-dialog.component';
 //model
 import { Usuario } from '@app/shared/models/user.interface';
+//messages
 import { MatDialog } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-usuarios',
@@ -27,15 +29,27 @@ export class UsuariosComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private userSrv: UsuariosService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar
     ) {
 
   }
 
   ngOnInit(): void {
+    this.suscription.add(
       this.userSrv.getAll(1).subscribe(res=>{
         this.dataSource.data = res.usuarios
-    });
+    }, 
+    err =>
+     {
+      if(err === 403){
+        window.alert("Ha ocurrido un error al conectar con el servidor.");        
+      }
+      if(err === 0){
+        window.alert("Ha ocurrido un error al conectar con el servidor.");
+      }
+     })
+    );
   }
 
   ngAfterViewInit() {
@@ -78,9 +92,37 @@ export class UsuariosComponent implements OnInit, AfterViewInit, OnDestroy {
     })
     dialogRef.afterClosed().subscribe(res=>{
       if(res){
-        console.log("respuesta del dialog",res)
+        this.suscription.add(
+          this.userSrv.changeStatus(user).subscribe((res)=>{
+            if(res){
+              this.suscription.add(
+                this.userSrv.getAll(1).subscribe(res=>{
+                  this.dataSource.data = res.usuarios
+              }, 
+              err =>
+               {
+                if(err === 403){
+                  window.alert("Ha ocurrido un error al conectar con el servidor.");        
+                }
+                if(err === 0){
+                  window.alert("Ha ocurrido un error al conectar con el servidor.");
+                }
+               })
+              )
+            }
+          },
+          err =>
+          {
+            if(err === 403){
+              window.alert("Ha ocurrido un error al conectar con el servidor.");        
+            }
+            if(err === 0){
+              window.alert("Ha ocurrido un error al conectar con el servidor.");
+            }
+          }
+          )
+        )
       }
     })
   }
-
 };

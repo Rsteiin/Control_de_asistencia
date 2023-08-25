@@ -15,7 +15,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from "@angular/material/paginator"; 
-import {MatChipsModule} from '@angular/material/chips';
+import  {MatChipsModule } from '@angular/material/chips';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const myModules = [
     MatToolbarModule,
@@ -34,7 +35,8 @@ const myModules = [
     MatTableModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
 ];
 
 @NgModule({

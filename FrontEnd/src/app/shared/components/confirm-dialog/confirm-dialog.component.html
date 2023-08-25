@@ -1,10 +1,10 @@
 <div mat-dialog-content style="text-align: center;">{{data.message}}</div>
 <br/>
 <div mat-dialog-actions>
-    <div style="display: flex; justify-content: end; width: 100%;">
+    <div style="display: flex; justify-content: start; width: 100%;">
         <div *ngIf="data.type === 'estado'" style="width: 100%;">
             <button *ngIf="data.active === 1" mat-raised-button style="background-color: #e55353; border-color: #e55353; color: white; text-align: center; " [mat-dialog-close]="true">{{data.okButton}}</button>
-            <button *ngIf="data.active === 0" mat-raised-button style="background-color: #2eb85c; border-color: #2eb85c; color: white; " [mat-dialog-close]="true">{{data.okButton}}</button>
+            <button *ngIf="data.active === 0" mat-raised-button style="background-color: #2eb85c; border-color: #2eb85c; color: white; text-align: center;" [mat-dialog-close]="true">{{data.okButton}}</button>
             <button mat-raised-button style="background-color: #ced2d8; border-color: #ced2d8; color: #4f5d73;" (click)="onClosed()">{{data.cancelButton}}</button>
         </div>
     </div>
