@@ -1,27 +1,37 @@
 import { Injectable } from '@angular/core';
 //hooks
-import { HttpClient, } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 //intefaces
-import { RespuestaUsuarios } from '@app/shared/models/user.interface';
+import { RespuestaUsuarios, Usuario } from '@app/shared/models/user.interface';
+import { Response } from '@app/shared/models/responses.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
-
+  
   constructor(
     private http: HttpClient
   ) { }
 
   getAll(page: number){
-    return this.http.post<RespuestaUsuarios>( `${environment.API_URL}/users/getUsers`, {page: page,
-    limit:10})
+    const headers = new HttpHeaders().set("x-access-token",`${JSON.parse(localStorage.getItem('user')||'{}').token}`);
+    return this.http.post<RespuestaUsuarios>( `${environment.API_URL}/users/getUsers`, {page: page,limit:100},{'headers':headers})
     .pipe(
-      map((res: RespuestaUsuarios )=>{
-        console.log(res)
-        console.log('Respuesta del servidor', res);
+      map((res: RespuestaUsuarios | any ) => {
+        return res;
+      }),
+      catchError((err)=>this.hadlerError(err))
+      );
+  };
+
+  changeStatus(user:Usuario){
+    const headers = new HttpHeaders().set("x-access-token",`${JSON.parse(localStorage.getItem('user')||'{}').token}`);
+    return this.http.post<Response>(`${environment.API_URL}/users/getUsers`,{usuario_id:user.usuario_id, estado: user.estado === 0 ? 1 : 0}, {'headers':headers})
+    .pipe(
+      map((res: RespuestaUsuarios | any ) => {
         return res;
       }),
       catchError((err)=>this.hadlerError(err))
@@ -43,7 +53,6 @@ export class UsuariosService {
   }
 
   private hadlerError(err:any):Observable<never>{
-    console.log(err)
     return  throwError(err.status);
   };
 }

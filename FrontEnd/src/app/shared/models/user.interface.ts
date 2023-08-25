@@ -26,6 +26,8 @@ export interface Usuario {
     estado: number;
     zonal: string;
     rol: string;
+    turno: string;
+    grupo: string;
 }
 
 export interface RespuestaUsuarios{

@@ -23,7 +23,8 @@ const usuariosController = {
       u.correo,
       u.rol,
       u.estado,
-      u.contrasena,
+      u.turno,
+      u.grupo,
       z.zonal_id,
       z.nombre AS zonal,
       z.area 
@@ -51,7 +52,40 @@ const usuariosController = {
       })
 
     }catch(e){
+      return res.status(500).json({
+        success : false,
+        error : e,
+        message : "Error en el servidor" 
+      });
+    }
+  },
+  changeStatus: async (req, res) =>{
+    const {usuario_id, estado} = req.body
+
+    if(usuario_id === undefined || estado === undefined){
       return res.status(401).json({
+        success : false,
+        error : "Bad request",
+        message : "invalid json" 
+      });
+    }
+
+    try{
+      
+      let strSql = `
+      UPDATE usuarios
+      SET estado = ?
+      WHERE usuario_id = ?;
+      `;
+
+      await con.query(strSql, [estado, usuario_id]);
+
+      return res.status(200).json({
+        success: true,
+        message: `Se ha ${estado === 1 ? "activado" : "desactivado"} el usuario`
+      }); 
+    }catch(e){
+      return res.status(500).json({
         success : false,
         error : e,
         message : "Error en el servidor" 

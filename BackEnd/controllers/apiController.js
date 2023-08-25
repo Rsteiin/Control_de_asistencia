@@ -77,6 +77,7 @@ const apiController = {
         message : "Credenciales incorrectas"
       }); 
     }catch(e){
+      console.log(e)
       return res.status(500).json({
         success :false,
         error : e, 

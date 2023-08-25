@@ -17,6 +17,16 @@ $my-theme: mat.define-light-theme((
  density: 0,
 ));
 
+$my-theme2: mat.define-dark-theme((
+ color: (
+   primary: $my-accent,
+   accent: $my-accent,
+   warn: $my-warn
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
 // Emit theme-dependent styles for common features used across multiple components.
 @include mat.core-theme($my-theme);
 

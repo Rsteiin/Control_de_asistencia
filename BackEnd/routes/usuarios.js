@@ -9,5 +9,6 @@ const usuariosController = require('../controllers/usuariosController');
 route.use(express.json())
 
 route.post ('/getUsers', auth, usuariosController.getUsers);
+route.post ('/changeStatus', auth, usuariosController.changeStatus);
 /* This exports the route object so that it can be used in other files. */
 module.exports = route
