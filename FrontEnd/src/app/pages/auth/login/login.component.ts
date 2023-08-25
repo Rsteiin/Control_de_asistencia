@@ -3,8 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, Subscription, takeUntil } from 'rxjs';
-
-import {ThemePalette} from '@angular/material/core';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-login',
@@ -87,11 +86,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
      })
     );
-      //        this.router.navigate(['/administrador/usuarios'])
   };
 
-  getMessageError(campo:string){
-    let message;
+  getMessageError(campo: string){
+    let message = "";
     if(this.signInForm.get(campo)?.hasError('required')){
       message = 'Campo requerido';
     }else if(this.signInForm.get(campo)?.hasError('pattern')){

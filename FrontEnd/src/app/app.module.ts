@@ -9,6 +9,8 @@ import { SidebarModule } from './shared/components/sidebar/sidebar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 import { OkDialogComponent } from './shared/components/ok-dialog/ok-dialog.component';
+import { DialogFormComponent } from './shared/components/dialog-form/dialog-form.component';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { OkDialogComponent } from './shared/components/ok-dialog/ok-dialog.compo
     AppComponent,
     HeaderComponent,
     ConfirmDialogComponent,
-    OkDialogComponent
+    OkDialogComponent,
+    DialogFormComponent
   ],
   imports: [
     BrowserModule,

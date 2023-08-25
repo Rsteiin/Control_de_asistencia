@@ -19,8 +19,8 @@ $my-theme: mat.define-light-theme((
 
 $my-theme2: mat.define-dark-theme((
  color: (
-   primary: $my-accent,
-   accent: $my-accent,
+   primary: $my-warn,
+   accent: $my-warn,
    warn: $my-warn
  ),
  typography: mat.define-typography-config(),

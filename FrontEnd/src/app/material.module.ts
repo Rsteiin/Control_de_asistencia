@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -15,8 +15,10 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from "@angular/material/paginator"; 
-import  {MatChipsModule } from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const myModules = [
     MatToolbarModule,
@@ -36,7 +38,9 @@ const myModules = [
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    ReactiveFormsModule
 ];
 
 @NgModule({

@@ -5,12 +5,15 @@ import { MatTableDataSource } from '@angular/material/table';
 //services 
 import { UsuariosService } from './services/usuarios.service';
 import { Subject, Subscription, takeUntil } from 'rxjs';
+//dialog
 import { ConfirmDialogComponent } from '@app/shared/components/confirm-dialog/confirm-dialog.component';
+import { DialogFormComponent } from '@app/shared/components/dialog-form/dialog-form.component';
 //model
 import { Usuario } from '@app/shared/models/user.interface';
 //messages
 import { MatDialog } from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatSnackBar,   MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-usuarios',
@@ -26,6 +29,10 @@ export class UsuariosComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   private suscription: Subscription = new Subscription();
+
+  //messages
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private userSrv: UsuariosService,
@@ -95,6 +102,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit, OnDestroy {
         this.suscription.add(
           this.userSrv.changeStatus(user).subscribe((res)=>{
             if(res){
+              this.openSnackBar(res.message,"");
               this.suscription.add(
                 this.userSrv.getAll(1).subscribe(res=>{
                   this.dataSource.data = res.usuarios
@@ -124,5 +132,22 @@ export class UsuariosComponent implements OnInit, AfterViewInit, OnDestroy {
         )
       }
     })
+  }
+
+  openDialogForm(user: Usuario|{}, titulo: string):void{
+    const dialogRef = this.dialog.open(DialogFormComponent,{
+      width:'450px',
+      data:{user:user, titulo:titulo}, 
+    })
+
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action,{
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration:5000
+    });
   }
 };

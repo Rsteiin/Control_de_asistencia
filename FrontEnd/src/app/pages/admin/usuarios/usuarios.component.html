@@ -10,7 +10,7 @@
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
         </mat-form-field>
         <div style="width: 30%; display: flex; align-items: center; justify-content: end; padding-right: 3rem;">
-          <button style="width: 70%;" mat-raised-button color="primary">Nuevo usuario</button>
+          <button style="width: 70%;" mat-raised-button color="primary" (click)="openDialogForm({}, 'Crear nuevo usuario')">Nuevo usuario</button>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
               </mat-icon> 
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Editar</button>
+              <button mat-menu-item (click)="openDialogForm(row, 'Editar usuario')">Editar</button>
               <button mat-menu-item *ngIf="row.estado === 1" (click)="openDialog(row)">Desactivar</button>
               <button mat-menu-item *ngIf="row.estado === 0" (click)="openDialog(row)">Activar</button>
             </mat-menu>

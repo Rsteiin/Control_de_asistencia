@@ -9,4 +9,15 @@ body {
     color: black;
     font-size: large;
   }
+  mat-dialog-container {
+    background-color: aliceblue !important;
+    color: black !important;
+  }
+  .mat-select-panel{
+    background: aliceblue !important;
+    color: black !important;
+ }
+ .mat-select-value{
+  color: black;
+ }
 }

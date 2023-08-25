@@ -1,0 +1,111 @@
+<div mat-dialog-content style="text-align: center; font-size: large; height: 2rem;">{{data.titulo}}</div>
+<br/>
+<div class="dialog-form">
+  <form  [formGroup] = "userForm" style="width: 100%; padding: 0 2rem;">
+
+    <mat-form-field style="width: 100%;">
+      <input 
+      type="text" 
+      formControlName = "nombre"
+      matInput placeholder="Nombre" 
+      required
+      >
+      <mat-error *ngIf="isValidField('nombre')">
+        {{getMessageError('nombre')}}
+      </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field style="width: 100%;">
+    <input 
+    type="text" 
+    formControlName = "segundo_nombre"
+    matInput placeholder="Segundo nombre" 
+    >
+    <mat-error *ngIf="isValidField('segundo_nombre')">
+      {{getMessageError('segundo_nombre')}}
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field style="width: 100%;">
+    <input 
+    type="text" 
+    formControlName = "apellido"
+    matInput placeholder="Apellido" 
+    required
+    > 
+    <mat-error *ngIf="isValidField('apellido')">
+      {{getMessageError('apellido')}}
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field style="width: 100%;">
+    <input 
+    type="text" 
+    formControlName = "segundo_apellido"
+    matInput placeholder="Segundo Apellido" 
+    >
+    <mat-error *ngIf="isValidField('segundo_apellido')">
+      {{getMessageError('segundo_apellido')}}
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field style="width: 100%;">
+    <input 
+    type="text" 
+    formControlName = "correo"
+    matInput placeholder="Correo" 
+    required
+    >
+    <mat-error *ngIf="isValidField('correo')">
+      {{getMessageError('correo')}}
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field style="width: 100%;">
+    <input 
+    [type] = "hide ?'password':'text' "
+    formControlName = "contrasena"
+    matInput placeholder="Contraseña" 
+    required
+    >
+    <button  type= "button" mat-icon-button matSuffix (click)="hide = !hide">
+      <mat-icon>
+          {{hide ? "visibility_off" : "visibility"}}
+      </mat-icon>
+  </button>
+    <mat-error *ngIf="isValidField('contrasena')">
+      {{getMessageError('contrasena')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Turno</mat-label>
+    <mat-select formControlName = "turno" [(value)]="turnoSelected" required>
+      <mat-option *ngFor="let turno of turnos" [value]="turno.value">
+        {{turno.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="isValidField('turno')">
+      {{getMessageError('turno')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Grupo</mat-label>
+    <mat-select formControlName = "grupo" [(value)]="groupSelected" required>
+      <mat-option *ngFor="let grupo of grupos" [value]="grupo.value">
+        {{grupo.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="isValidField('grupo')">
+      {{getMessageError('grupo')}}
+    </mat-error>
+  </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions>
+    <div class="dialog-form">
+      aqui van los botones
+    </div>
+</div>
