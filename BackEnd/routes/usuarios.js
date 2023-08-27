@@ -10,5 +10,6 @@ route.use(express.json())
 
 route.post ('/getUsers', auth, usuariosController.getUsers);
 route.post ('/changeStatus', auth, usuariosController.changeStatus);
+route.post ('/saveUser', auth, usuariosController.saveUser);
 /* This exports the route object so that it can be used in other files. */
 module.exports = route

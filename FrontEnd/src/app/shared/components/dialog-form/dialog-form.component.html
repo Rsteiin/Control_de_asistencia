@@ -1,5 +1,9 @@
 <div mat-dialog-content style="text-align: center; font-size: large; height: 2rem;">{{data.titulo}}</div>
 <br/>
+  <div class="loading-shade"
+  *ngIf="isLoading">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
 <div class="dialog-form">
   <form  [formGroup] = "userForm" style="width: 100%; padding: 0 2rem;">
 
@@ -61,7 +65,7 @@
     </mat-error>
   </mat-form-field>
   
-  <mat-form-field style="width: 100%;">
+  <mat-form-field *ngIf="!data.isEdit" style="width: 100%;">
     <input 
     [type] = "hide ?'password':'text' "
     formControlName = "contrasena"
@@ -79,8 +83,20 @@
   </mat-form-field>
 
   <mat-form-field style="width: 100%;">
+    <mat-label>Zonal</mat-label>
+    <mat-select formControlName = "zonal" required>
+      <mat-option *ngFor="let zonal of zonales" [value]="zonal.value">
+        {{zonal.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="isValidField('zonal')">
+      {{getMessageError('zonal')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%;">
     <mat-label>Turno</mat-label>
-    <mat-select formControlName = "turno" [(value)]="turnoSelected" required>
+    <mat-select formControlName = "turno" required>
       <mat-option *ngFor="let turno of turnos" [value]="turno.value">
         {{turno.viewValue}}
       </mat-option>
@@ -92,7 +108,7 @@
 
   <mat-form-field style="width: 100%;">
     <mat-label>Grupo</mat-label>
-    <mat-select formControlName = "grupo" [(value)]="groupSelected" required>
+    <mat-select formControlName = "grupo" required>
       <mat-option *ngFor="let grupo of grupos" [value]="grupo.value">
         {{grupo.viewValue}}
       </mat-option>
@@ -105,7 +121,8 @@
   </form>
 </div>
 <div mat-dialog-actions>
-    <div class="dialog-form">
-      aqui van los botones
-    </div>
+  <div style="display: flex; justify-content: space-between; width: 100%; padding: 0 2rem;">
+    <button mat-raised-button  color="primary" style="color: white; text-align: center;" [disabled]="userForm.invalid" (click)="onSave()">Guardar</button>
+    <button mat-raised-button style="background-color: #ced2d8; border-color: #ced2d8; color: #4f5d73;" (click)="onClosed()" >Cancelar</button>
+  </div>
 </div>

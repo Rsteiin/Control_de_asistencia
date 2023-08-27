@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 //services 
 import { UsuariosService } from './services/usuarios.service';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subscription } from 'rxjs';
 //dialog
 import { ConfirmDialogComponent } from '@app/shared/components/confirm-dialog/confirm-dialog.component';
 import { DialogFormComponent } from '@app/shared/components/dialog-form/dialog-form.component';
@@ -12,8 +12,11 @@ import { DialogFormComponent } from '@app/shared/components/dialog-form/dialog-f
 import { Usuario } from '@app/shared/models/user.interface';
 //messages
 import { MatDialog } from '@angular/material/dialog';
-import {MatSnackBar,   MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
+import { 
+  MatSnackBar,   
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-usuarios',
@@ -33,7 +36,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit, OnDestroy {
   //messages
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-
+  isSave: boolean = false;
   constructor(
     private userSrv: UsuariosService,
     private dialog: MatDialog,
@@ -137,9 +140,24 @@ export class UsuariosComponent implements OnInit, AfterViewInit, OnDestroy {
   openDialogForm(user: Usuario|{}, titulo: string):void{
     const dialogRef = this.dialog.open(DialogFormComponent,{
       width:'450px',
-      data:{user:user, titulo:titulo}, 
+      data:{user:user, titulo:titulo, isEdit :Object.keys(user).length? true: false, isSave:false}, 
     })
-
+    dialogRef.afterClosed().subscribe((res)=>{
+      this.suscription.add(
+        this.userSrv.getAll(1).subscribe(res=>{
+          this.dataSource.data = res.usuarios
+      }, 
+      err =>
+       {
+        if(err === 403){
+          window.alert("Ha ocurrido un error al conectar con el servidor.");        
+        }
+        if(err === 0){
+          window.alert("Ha ocurrido un error al conectar con el servidor.");
+        }
+       })
+      )
+    })
 
   }
 

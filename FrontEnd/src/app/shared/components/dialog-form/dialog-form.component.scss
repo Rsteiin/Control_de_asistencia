@@ -6,10 +6,13 @@
   justify-content: center;
   color: black;
   form{
-    .full-width-input{
-      width: 80%;
-      font-size: 15px;
-      margin-bottom: 1rem;
+    mat-form-field{
+      padding-bottom: 0.1rem;
+      .full-width-input{
+        width: 80%;
+        font-size: 15px;
+        margin-bottom: 1rem;
+      }
     }
   
     .button{

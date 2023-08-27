@@ -5,9 +5,25 @@ body {
   margin: 0; 
   font-family: Roboto, "Helvetica Neue", sans-serif;
   
+  .loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .titulo{
     color: black;
     font-size: large;
+  }
+  .mat-simple-snackbar{
+    justify-content: center !important;
   }
   mat-dialog-container {
     background-color: aliceblue !important;
@@ -19,5 +35,11 @@ body {
  }
  .mat-select-value{
   color: black;
+ }
+ .mat-mdc-snack-bar-container .mdc-snackbar__label{
+  text-align: center;
+ }
+ .mat-progress-spinner circle, .mat-spinner circle{
+  stroke: #03a9f4;
  }
 }

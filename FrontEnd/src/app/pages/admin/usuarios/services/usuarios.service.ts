@@ -11,14 +11,15 @@ import { Response } from '@app/shared/models/responses.interface';
   providedIn: 'root'
 })
 export class UsuariosService {
-  
+  private headers = new HttpHeaders().set("x-access-token",`${JSON.parse(localStorage.getItem('user')||'{}').token}`);
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+
+  }
 
   getAll(page: number){
-    const headers = new HttpHeaders().set("x-access-token",`${JSON.parse(localStorage.getItem('user')||'{}').token}`);
-    return this.http.post<RespuestaUsuarios>( `${environment.API_URL}/users/getUsers`, {page: page,limit:100},{'headers':headers})
+    return this.http.post<RespuestaUsuarios>( `${environment.API_URL}/users/getUsers`, {page: page,limit:100},{'headers':this.headers})
     .pipe(
       map((res: RespuestaUsuarios | any ) => {
         return res;
@@ -28,8 +29,17 @@ export class UsuariosService {
   };
 
   changeStatus(user:Usuario){
-    const headers = new HttpHeaders().set("x-access-token",`${JSON.parse(localStorage.getItem('user')||'{}').token}`);
-    return this.http.post<Response>(`${environment.API_URL}/users/changeStatus`,{usuario_id:user.usuario_id, estado: user.estado === 0 ? 1 : 0}, {'headers':headers})
+    return this.http.post<Response>(`${environment.API_URL}/users/changeStatus`,{usuario_id:user.usuario_id, estado: user.estado === 0 ? 1 : 0}, {'headers':this.headers})
+    .pipe(
+      map((res: RespuestaUsuarios | any ) => {
+        return res;
+      }),
+      catchError((err)=>this.hadlerError(err))
+      );
+  }
+
+  saveUser(user:any){
+    return this.http.post<Response>(`${environment.API_URL}/users/saveUser`,{...user}, {'headers':this.headers})
     .pipe(
       map((res: RespuestaUsuarios | any ) => {
         return res;
