@@ -2,6 +2,7 @@
 
 html, body { width: 100%; height: 100%; }
 body { 
+
   margin: 0; 
   font-family: Roboto, "Helvetica Neue", sans-serif;
   mat-sidenav-content{
@@ -25,24 +26,162 @@ body {
     color: black;
     font-size: large;
   }
+
   .mat-simple-snackbar{
     justify-content: center !important;
   }
+
   mat-dialog-container {
     background-color: aliceblue !important;
     color: black !important;
   }
+
   .mat-select-panel{
     background: aliceblue !important;
     color: black !important;
- }
- .mat-select-value{
-  color: black;
- }
- .mat-mdc-snack-bar-container .mdc-snackbar__label{
-  text-align: center;
- }
- .mat-progress-spinner circle, .mat-spinner circle{
-  stroke: #03a9f4;
- }
+  }
+
+  .mat-select-value{
+    color: black;
+  }
+
+  .mat-mdc-snack-bar-container .mdc-snackbar__label{
+    text-align: center;
+  }
+
+  .mat-progress-spinner circle, .mat-spinner circle{
+    stroke: #03a9f4;
+  }
+
+  //estilos para consola
+  .welcome{
+    display: flex; 
+    justify-content: flex-end; 
+    font-size: large; 
+    padding: 1% 2rem 0rem 2rem; 
+    color: black;
+  }
+
+ .consola-style{
+    height: 60%;
+    width: 60%;
+    border: 1px solid rgba(0,0,0, 0.1);
+    box-shadow: 4px 4px 0px 1px rgba(207, 204, 204, 0.7);
+    padding: 3%;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 7px;
+    cursor: pointer;
+  
+    .consola-siglas {
+      width: 100%; 
+      height: 100%; 
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1) inset; 
+      border-radius: 7px;
+      .consola-siglas-text{
+        width: 100%; 
+        text-align: center; 
+        padding-top: 14px; 
+        color: white;
+      }
+    }
+    &:hover{
+      filter: brightness(1.05);
+    }
+    .consola-numero{
+      position: absolute;
+      background-color: white;
+      left: 0;
+      bottom: 0.5px;
+      padding: 3px 8px 3px 20px;
+      font-weight: 500;
+    }
+  }
+
+  .consola-style-selected{
+    height: 60%;
+    width: 60%;
+    border: 2.5px solid #0078D7;
+    box-shadow: 4px 4px 0px 1px rgba(30, 104, 231, 0.7);
+    padding: 3%;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 7px;
+    cursor: pointer;
+    
+    .consola-siglas {
+      width: 100%; 
+      height: 100%; 
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1) inset; 
+      border-radius: 7px;
+      .consola-siglas-text{
+        width: 100%; 
+        text-align: center; 
+        padding-top: 14px; 
+        color: white;
+      }
+    }
+    &:hover{
+      filter: brightness(1.05);
+    }
+    .consola-numero{
+      position: absolute;
+      background-color: white;
+      left: 0;
+      bottom: 0.5px;
+      padding: 3px 8px 3px 20px;
+      font-weight: 500;
+    }
+  }
+
+  .ppnn{
+    background-color: #A7D148;
+  }
+
+  .ecu{
+    background-color: #FF5D94;
+  }
+
+  .pmq{
+    background-color: #6124B8;
+  }
+
+  .emaseo{
+    background-color: #D8CA22;
+  }
+  
+  .ffaa{
+    background-color: #4AAB23;
+  }
+
+  .amt{
+    background-color: #23AB8A;
+  }
+  
+  .mat-expansion-panel{
+    box-shadow: none !important;
+  }
+
+  .mat-expansion-panel-header{
+    padding: 0 16px !important;
+  }
+
+  .center-all{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body::-webkit-scrollbar {
+    width: 7px !important;               /* width of the entire scrollbar */
+    }
+    
+    body::-webkit-scrollbar-track {
+    background: gray !important;        /* color of the tracking area */
+    }
+    
+    body::-webkit-scrollbar-thumb {
+    background-color: white !important;    /* color of the scroll thumb */
+    border-radius: 25px !important;       /* roundness of the scroll thumb */
+  }
 }

@@ -1,4 +1,4 @@
-<ng-container *ngIf=" Role ==='ADMINISTRADOR'">
+<ng-container *ngIf=" Role ==='ADMINISTRADOR'"  style="overflow-y: auto;" class="optimization-scroll">
     <mat-nav-list>
         <a mat-list-item routerLink="/administrador">
             <mat-icon>
@@ -6,7 +6,7 @@
             </mat-icon>
             <span class="nav-link">Dashboard</span>
         </a>
-        <a mat-list-item routerLink="/administrador/usuarios">
+        <a mat-list-item routerLink="/administrador/usuarios" class="center-all">
             <mat-icon>
                 people
             </mat-icon>
@@ -16,26 +16,38 @@
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
                 <mat-icon>
-                    people
+                    table_view
                 </mat-icon>
                 <span class="nav-link">Resumen por institución</span>
+                <mat-icon>
+                    arrow_drop_down
+                </mat-icon>
               </mat-expansion-panel-header>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
-              <p>This is the primary content of the panel.</p>
+              <a mat-list-item routerLink="/administrador">
+                <mat-icon>
+                    insert_chart_outlined
+                </mat-icon>
+                <span class="nav-link">Dashboard</span>
+            </a>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
+            <p>asdasdasdasdddddddddddddddddddddddddddddddddddddd</p>
             </mat-expansion-panel>
           </mat-accordion>
     </mat-nav-list>
 </ng-container>
-<ng-template #viewOperaciones>
+<!-- <ng-template #viewOperaciones>
     <mat-nav-list>
         <div mat-subheader>Resumen</div>
         <a mat-list-item routerLink="/operaciones">
@@ -114,4 +126,4 @@
         </a>
     </mat-nav-list>
 </ng-template>    
-    
+     -->

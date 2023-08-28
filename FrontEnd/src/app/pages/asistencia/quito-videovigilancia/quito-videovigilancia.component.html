@@ -2,15 +2,17 @@
 *ngIf="isLoading">
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 </div>
-<div style="display: flex; justify-content: end; font-size: large; padding: 1% 2rem 0rem 2rem; color: black;">
+
+<div class="welcome">
     <span>Bienvenido {{nombre_completo}}</span>
 </div>
+
 <div class="container">
     <div class="content">
         <div class="header-container">
             <div class="pantalla-container">
                 <div class="pantalla">
-                    <span style="text-align: center; margin-top: 0.3rem;">Pantalla principal</span>
+                    <span >Pantalla principal</span>
                 </div>
             </div>
             <div class="save-button">
@@ -25,171 +27,15 @@
             </button>  
             </div>
         </div>
-        <div class="consolas-container">
-            <div class="consolas-row">
-                <div class={{onSearch(consolas[0]?.consola_id)}} (click)="onClick(consolas[0])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[0]?.siglas}}
-                    </div >
+        <mat-grid-list  cols="6" rowHeight="2:1">
+            <mat-grid-tile *ngFor = "let consola of consolas">
+                <div class = {{onSearch(consola?.consola_id)}} (click)="onClick(consola)">
+                    <div class="consola-siglas ppnn">
+                        <div class="consola-siglas-text">{{consola?.siglas}}</div>
+                    </div>
+                    <div class="consola-numero">{{consola?.numero}}</div>
                 </div>
-                <div class={{onSearch(consolas[1]?.consola_id)}} (click)="onClick(consolas[1])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[1]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[2]?.consola_id)}} (click)="onClick(consolas[2])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[2]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[3]?.consola_id)}} (click)="onClick(consolas[3])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[3]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[4]?.consola_id)}} (click)="onClick(consolas[4])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #00B0F0;">
-                        {{consolas[4]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[5]?.consola_id)}} (click)="onClick(consolas[5])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #00B0F0;">
-                        {{consolas[5]?.siglas}}
-                    </div >
-                </div>
-            </div>
-
-            <div class="consolas-row">
-                <div class={{onSearch(consolas[6]?.consola_id)}} (click)="onClick(consolas[6])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #00B0F0;">
-                        {{consolas[6]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[7]?.consola_id)}} (click)="onClick(consolas[7])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #00B0F0;">
-                        {{consolas[7]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[8]?.consola_id)}} (click)="onClick(consolas[8])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[8]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[9]?.consola_id)}} (click)="onClick(consolas[9])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[9]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[10]?.consola_id)}} (click)="onClick(consolas[10])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[10]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[11]?.consola_id)}} (click)="onClick(consolas[11])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[11]?.siglas}}
-                    </div >
-                </div>
-            </div>
-
-            <div class="consolas-row">
-                <div class={{onSearch(consolas[12]?.consola_id)}} (click)="onClick(consolas[12])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #F7F759;">
-                        {{consolas[12]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[13]?.consola_id)}} (click)="onClick(consolas[13])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[13]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[14]?.consola_id)}} (click)="onClick(consolas[14])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[14]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[15]?.consola_id)}} (click)="onClick(consolas[15])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[15]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[16]?.consola_id)}} (click)="onClick(consolas[16])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[16]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[17]?.consola_id)}} (click)="onClick(consolas[17])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[17]?.siglas}}
-                    </div >
-                </div>
-            </div>
-
-            <div class="consolas-row">
-                <div class={{onSearch(consolas[18]?.consola_id)}} (click)="onClick(consolas[18])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[18]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[19]?.consola_id)}} (click)="onClick(consolas[19])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[19]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[20]?.consola_id)}} (click)="onClick(consolas[20])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #D8E4BC;">
-                        {{consolas[20]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[21]?.consola_id)}} (click)="onClick(consolas[21])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[21]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[22]?.consola_id)}} (click)="onClick(consolas[22])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #00B050;">
-                        {{consolas[22]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[23]?.consola_id)}} (click)="onClick(consolas[23])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #DAEEF3;">
-                        {{consolas[23]?.siglas}}
-                    </div >
-                </div>
-            </div>
-
-            <div class="consolas-row">
-                <div class={{onSearch(consolas[24]?.consola_id)}} (click)="onClick(consolas[24])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #00B0F0;">
-                        {{consolas[24]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[25]?.consola_id)}} (click)="onClick(consolas[25])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #00B0F0;">
-                        {{consolas[25]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[26]?.consola_id)}} (click)="onClick(consolas[26])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[26]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[27]?.consola_id)}} (click)="onClick(consolas[27])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[27]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[28]?.consola_id)}} (click)="onClick(consolas[28])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[28]?.siglas}}
-                    </div >
-                </div>
-                <div class={{onSearch(consolas[29]?.consola_id)}} (click)="onClick(consolas[29])">
-                    <div style="height: 25%;  border-radius: 8px 8px 0 0; text-align: center; background-color: #FD5252;">
-                        {{consolas[29]?.siglas}}
-                    </div >
-                </div>
-            </div>
-        </div>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 </div>

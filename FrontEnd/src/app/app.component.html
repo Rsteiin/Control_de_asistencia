@@ -1,7 +1,7 @@
-<mat-sidenav-container>
-  <mat-sidenav  style="width: 17%;" #sidenav mode="side" [(opened)]="opened">
-    <mat-toolbar >Menu</mat-toolbar>
-    <app-sidebar></app-sidebar>
+<mat-sidenav-container class="optimization-scroll">
+  <mat-sidenav  style="width: 17%;" #sidenav mode="side" [(opened)]="opened" class="optimization-scroll">
+    <mat-toolbar class="optimization-scroll" >Menu</mat-toolbar>
+    <app-sidebar class="optimization-scroll"></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header style="height: 10%;" (toggleSidenav)="sidenav.toggle()"></app-header>

@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    height: 95%;
+    height: 5%;
     color: black;
     padding: 1rem 1.5rem;
     box-sizing: border-box;
@@ -8,58 +8,51 @@
   
     .content{   
       width: 100%;
-      height: 100%;
+      height: auto;
       background-color: white;
-      box-sizing: border-box;
+
       .header-container{
         width: 100%;
         display: flex;
         flex-direction: row;
+      
         .pantalla-container{
           display: flex;
           flex-direction: row;
           width: 70%;
           justify-content: flex-end;
+      
           .pantalla{
             width: 100%;
             height: 2rem;
             border-radius: 5px;
             background-color: #D3D3D3;
             margin-top: 1.5rem;
-            text-align: center;
             margin-left: 45%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
           }
         }
+      
         .save-button{
           margin-top: 1.5rem;
           width: 30%;
           display: flex;
-          justify-content: end;
+          justify-content: flex-end;
           padding-right: 4rem;
         }
       }
 
       .consolas-container{
         width: 100%;
-        height: 85%;
+        height: 100%;
         background-color: white;
         margin-top: 2rem;
         display: flex;
         flex-direction: column;
-        .consola{
-            border: 3px solid #D3D3D3 ;
-            height: 100%;
-            width: 10%;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .consola-selected{
-            border: 3px solid red ;
-            height: 100%;
-            width: 10%;
-            border-radius: 10px;
-            cursor: pointer;
-        }
         .consolas-row{
             display: flex;
             flex-direction: row;

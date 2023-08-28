@@ -57,9 +57,9 @@ export class QuitoDespachoComponent implements OnInit {
   onSearch(search_consola_id:number): string{
     const result = this.consolasSelected.find(({ consola_id }) => consola_id === search_consola_id);
     if(result){
-      return "consola-selected"
+      return "consola-style-selected"
     }else{
-      return "consola"
+      return "consola-style"
     }
   }
 
