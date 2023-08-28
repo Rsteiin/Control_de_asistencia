@@ -9,6 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   Role:any=null;
+  panelOpenState = false;
   private destroy$ = new Subject<any>();
   
   constructor(private authSvc: AuthService) { }
