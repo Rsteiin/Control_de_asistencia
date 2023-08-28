@@ -101,7 +101,6 @@ export class DialogFormComponent implements OnInit {
     this.suscription.add(
       this.usrSrv.saveUser(payload).subscribe((resUser) => {
         if(resUser){
-          console.log(resUser);
           this.openSnackBar(resUser.message,"");
           this.isLoading = false;
           this.onClosed();

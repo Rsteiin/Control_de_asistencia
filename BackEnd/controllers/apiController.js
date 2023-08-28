@@ -40,11 +40,12 @@ const apiController = {
       const strSqlUser = `
       SELECT 
       u.usuario_id,
-      CONCAT(ifnull(u.nombre,""),' ',ifnull(u.segundo_nombre,"")) AS apellido,
-      CONCAT(ifnull(u.apellido,""),' ',ifnull(u.segundo_apellido,"")) AS apellido,
+      u.nombre,
+      u.apellido,
       u.correo,
       u.rol,
       u.estado,
+      u.turno,
       u.contrasena,
       z.zonal_id,
       z.nombre AS zonal,
@@ -68,7 +69,8 @@ const apiController = {
           zonal_id: resultUser[0]?.zonal_id,
           zonal: resultUser[0]?.zonal,
           area: resultUser[0]?.area,
-          token : generateAccessToken({correo})
+          token : generateAccessToken({correo}),
+          turno :resultUser[0]?.turno 
         });
       } 
       return res.status(403).json({

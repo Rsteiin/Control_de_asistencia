@@ -1,10 +1,10 @@
 <mat-toolbar color ='secondary' >
-   <ng-container *ngIf="(Role ==='OPERACIONES'||'ADMINISTRADOR') && (Role!='VIDEOVIGILANCIA')&&isSignIn">
+   <ng-container *ngIf="(Role ==='ADMINISTRADOR') && isSignIn">
         <button mat-icon-button (click)="ontoggleSidenav()">
             <mat-icon>menu</mat-icon>
         </button>
     </ng-container>
-    <span *ngIf="!isSignIn||(Role==='VIDEOVIGILANCIA')">Ecu 911 - Control de asistencia</span>
+    <span *ngIf="!isSignIn||(Role === 'AGENTE')">Ecu 911 - Control de asistencia</span>
     <span class="spacer"></span>
-    <a  *ngIf="isSignIn" mat-button (click)="onSignOut()">Cerrar sesión</a> 
+    <a  *ngIf="isSignIn" mat-button (click)="onSignOut()">Cerrar sesión <mat-icon>exit_to_app </mat-icon></a> 
 </mat-toolbar>

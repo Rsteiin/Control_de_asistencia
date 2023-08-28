@@ -7,6 +7,8 @@ const cors = require("cors");
 //Importing routes for request
 const api = require("./routes/api");
 const users = require("./routes/usuarios");
+const consolas = require("./routes/consolas");
+const inasistencias = require("./routes/inasistencias")
 //Start server with express
 const app = express();
 
@@ -36,6 +38,8 @@ app.use(express.json());
 //(URL) Routes
 app.use("/api", api);
 app.use("/users", users);
+app.use("/consolas", consolas);
+app.use("/inasistencias", inasistencias);
 
 //Get port number from .env
 const port = process.env.PORT_SERVER || 3000;

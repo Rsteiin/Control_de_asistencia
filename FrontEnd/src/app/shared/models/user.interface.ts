@@ -1,5 +1,6 @@
-export type Roles = 'ADMINISTRADOR' |'OPERADOR'|'VIDEOVIGILANCIA' | null;
-export type Zonal = 'QUITO-VIDEO' | 'QUITO-DESPACHO'| null;
+export type Roles = 'ADMINISTRADOR' |'AGENTE' | null;
+export type Zonal = 'QUITO' | 'NAPO'| null;
+export type Area = 'VIDEOVIGILANCIA' | 'DESPACHO' | null;
 
 export interface Usuario{
     usuario: string;
@@ -13,6 +14,8 @@ export interface RespuestaUsuario{
     usuario:string;
     zonal: Zonal;
     rol:Roles;
+    turno: string;
+    area: Area;
     accessToken: string
 }
 

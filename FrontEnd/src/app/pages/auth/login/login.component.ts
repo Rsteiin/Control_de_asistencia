@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { ThemePalette } from '@angular/material/core';
+import { Area, Zonal } from '@app/shared/models/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   //variables para validación
   hide = true;
   Role : any = " ";
+  Zonal : Zonal;
+  Area : Area;
   isLoading = false ; 
   colorLoading: ThemePalette = "primary";
   isError = false;
@@ -62,17 +65,32 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.Role = res
         ));
 
+        this.authSvc.isZonal$.pipe(takeUntil(this.destroy$)).
+        subscribe((res)=>(
+          console.log(res),
+          this.Zonal = res
+        ));
+
+        this.authSvc.area$.pipe(takeUntil(this.destroy$)).
+        subscribe((res)=>(
+          console.log(res),
+          this.Area = res
+        ));
+
         if(this.Role === "ADMINISTRADOR"){
           this.router.navigate(['/administrador/usuarios'])
         }
-        return;
-        if(this.Role ==='VIDEOVIGILANCIA'){
-          this.router.navigate(['/asistencia']);
-        }else if(this.Role === 'ADMINISTRADOR'){
-          this.router.navigate(['/home']);
-        }else if (this.Role ==='OPERACIONES'){
-          this.router.navigate(['/operaciones']);
+
+        if(this.Role === "AGENTE"){
+          if(this.Zonal === "QUITO"){
+            if(this.Area === "VIDEOVIGILANCIA"){
+              this.router.navigate(['/asistencia/quito-videovigilancia'])
+            }else{
+              this.router.navigate(['/asistencia/quito-despacho'])
+            }
+          }
         }
+        return;
       }
     }, 
     err =>

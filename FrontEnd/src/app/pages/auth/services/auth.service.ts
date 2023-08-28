@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { UtilsService } from '@app/shared/services/utils.service';
 
 //models 
-import { RespuestaUsuario, Usuario, Roles, Zonal } from '@app/shared/models/user.interface';
+import { RespuestaUsuario, Usuario, Roles, Zonal, Area } from '@app/shared/models/user.interface';
 import { APIError } from '@app/shared/models/error.interface';
 
 const helper = new JwtHelperService();
@@ -20,6 +20,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   private role = new BehaviorSubject<Roles>(null);
   private zonal = new BehaviorSubject<Zonal>(null);
+  private area = new BehaviorSubject<Area>(null);
 
   constructor(private http:HttpClient, private router: Router, private utilsSvc:UtilsService ) {
     this.checkToken();
@@ -37,15 +38,19 @@ export class AuthService {
     return this.zonal.asObservable();
   }
 
+  get area$():Observable<Area>{
+    return this.area.asObservable();
+  }
+
   signIn(authData:Usuario):Observable<RespuestaUsuario | void | APIError >{
     return this.http.post<RespuestaUsuario>( `${environment.API_URL}/api/signIn`,authData)
     .pipe(
       map((res: RespuestaUsuario )=>{
-        console.log('Respuesta del servidor', res);
         this.saveLocalStorage(res);
         this.loggedIn.next(true);
         this.role.next(res.rol);
-        this.zonal.next(res.zonal)
+        this.zonal.next(res.zonal);
+        this.area.next(res.area);
         return res;
       }),
       catchError((err)=>this.hadlerError(err))
@@ -60,7 +65,7 @@ export class AuthService {
   }
 
   private saveLocalStorage(user:RespuestaUsuario):void{
-    const {usuario_id, usuario, ...rest} = user;
+    const {...rest} = user;
     localStorage.setItem('user',JSON.stringify(rest));
 
   }

@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { AsistenciaRoutingModule } from './asistencia-routing.module';
 import { AsistenciaComponent } from './asistencia.component';
-import { QuitoComponent } from './quito/quito.component';
-import { QuitoDespachoComponent } from './quito-despacho/quito-despacho.component';
 import { MaterialModule } from '@app/material.module';
 import { FormsModule } from '@angular/forms';
+import { QuitoVideovigilanciaComponent } from './quito-videovigilancia/quito-videovigilancia.component';
+import { QuitoDespachoComponent } from './quito-despacho/quito-despacho.component';
 
 
 @NgModule({
   declarations: [
     AsistenciaComponent,
-    QuitoComponent,
+    QuitoVideovigilanciaComponent,
     QuitoDespachoComponent
   ],
   imports: [

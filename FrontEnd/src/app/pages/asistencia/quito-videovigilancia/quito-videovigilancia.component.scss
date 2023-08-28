@@ -41,50 +41,24 @@
 
       .consolas-container{
         width: 100%;
-        height: 110%;
+        height: 85%;
         background-color: white;
         margin-top: 2rem;
         display: flex;
         flex-direction: column;
-        .consola-title{
-          height: 40%;  
-          border-radius: 8px 8px 0 0; 
-          text-align: center;
-        }
         .consola{
             border: 3px solid #D3D3D3 ;
             height: 100%;
-            width: 7%;
+            width: 10%;
             border-radius: 10px;
             cursor: pointer;
-        }
-        .numero{
-          display: flex; 
-          justify-content: center; 
-          align-items: center; 
-          height: 60%;
-        }
-        .consola-sn{
-          border: 3px solid #D3D3D3 ;
-          height: 100%;
-          width: 7%;
-          border-radius: 10px;
-        }
-        .sn{
-          display: flex; 
-          justify-content: center; 
-          align-items: center; 
-          height: 100%;
         }
         .consola-selected{
             border: 3px solid red ;
             height: 100%;
-            width: 7%;
+            width: 10%;
             border-radius: 10px;
             cursor: pointer;
-        }
-        .camino{
-            width: 2%; 
         }
         .consolas-row{
             display: flex;
@@ -92,7 +66,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0.5rem 2rem 1rem;
-            height: 15%;
+            height: 20%;
         }
     }
     }

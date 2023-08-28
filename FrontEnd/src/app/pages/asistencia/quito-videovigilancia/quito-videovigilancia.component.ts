@@ -1,27 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { AsistenciaService } from '../services/asistencia.service';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AsistenciaService } from '../services/asistencia.service';
 import { Consolas } from '@app/shared/models/consola.interface';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@app/shared/components/confirm-dialog/confirm-dialog.component';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-quito-despacho',
-  templateUrl: './quito-despacho.component.html',
-  styleUrls: ['./quito-despacho.component.scss']
+  selector: 'app-quito-videovigilancia',
+  templateUrl: './quito-videovigilancia.component.html',
+  styleUrls: ['./quito-videovigilancia.component.scss']
 })
-export class QuitoDespachoComponent implements OnInit {
+export class QuitoVideovigilanciaComponent implements OnInit, OnDestroy {
 
-  nombre_completo:string = "";
+  nombre_completo = "";
   consolas = [];
   consolasSelected = []; 
-  isLoading:boolean = false;
+  isLoading = false;
 
   private suscription: Subscription = new Subscription();
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-
+  
   constructor(
     private AsisSrv: AsistenciaService,
     private dialog : MatDialog,
@@ -30,7 +30,7 @@ export class QuitoDespachoComponent implements OnInit {
 
   ngOnInit(): void {
     this.suscription.add(
-      this.AsisSrv.getConsolas(3).subscribe((res)=>{
+      this.AsisSrv.getConsolas(2).subscribe((res)=>{
         console.log(res)
         this.consolas = res.consolas;
       },err => {
@@ -43,6 +43,10 @@ export class QuitoDespachoComponent implements OnInit {
     let nombre = user.nombre.charAt(0).toUpperCase() + user.nombre.toLowerCase().slice(1);
     let apellido = user.apellido.charAt(0).toUpperCase() + user.apellido.toLowerCase().slice(1)
     this.nombre_completo = nombre + " " + apellido
+  }
+
+  ngOnDestroy(): void {
+    this.suscription.unsubscribe();
   }
 
   onClick(consola: Consolas):void {
@@ -113,6 +117,5 @@ export class QuitoDespachoComponent implements OnInit {
       duration:7000
     });
   }
-
 
 }
