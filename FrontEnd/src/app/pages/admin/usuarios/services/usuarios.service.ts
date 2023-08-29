@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //hooks
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 //intefaces
 import { RespuestaUsuarios, Usuario } from '@app/shared/models/user.interface';
@@ -46,20 +46,6 @@ export class UsuariosService {
       }),
       catchError((err)=>this.hadlerError(err))
       );
-  }
-
-  getByID(){
-
-  }
-
-  new(){
-
-  }
-  update(){
-
-  }
-  delete(){
-
   }
 
   private hadlerError(err:any):Observable<never>{

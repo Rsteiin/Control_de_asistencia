@@ -1,6 +1,6 @@
 import { RespuestaConsola } from "./consola.interface";
 
-export interface InasisteciaRspuesta {
+  export interface InasisteciaPorConsola {
     consola: string;
     area: string;
     inasistencias: number;

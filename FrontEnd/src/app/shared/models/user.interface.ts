@@ -1,5 +1,5 @@
 export type Roles = 'ADMINISTRADOR' |'AGENTE' | null;
-export type Zonal = 'QUITO' | 'NAPO'| null;
+export type Zonal = 'QUITO' | null;
 export type Area = 'VIDEOVIGILANCIA' | 'DESPACHO' | null;
 
 export interface Usuario{

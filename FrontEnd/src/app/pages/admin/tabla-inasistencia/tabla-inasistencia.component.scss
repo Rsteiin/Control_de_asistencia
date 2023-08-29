@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  height: 100%;
+  color: black;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  background-color: #EBEDEF;
+
+  .content{   
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    .custom-table{
+      width: 100%;
+    }
+  }
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    color: black; width: 100%; padding:0rem 3rem 0 3rem; box-sizing: border-box;
+  }
+}
+
+tr.mat-row, tr.mat-footer-row {
+  height: 30px;
+}
+
+.divide-panel{
+  height: 100%; 
+  width: 100%; 
+  display: flex; 
+  flex-direction: row;
+  .panel1{
+    width: 65%;
+  }
+  .panel2{
+    width: 35%;
+  }
+}
