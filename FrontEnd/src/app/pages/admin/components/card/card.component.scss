@@ -1,0 +1,39 @@
+.card{
+  background-color: red;
+  width: 200px;
+  height: 80px;
+  border-bottom: #427FEC solid;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-container{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
+}
+
+.icon-section{
+  width: 35%;
+  height: 100%;
+}
+
+.text-section{
+  width: 55%;
+  flex-direction: column;
+}
+
+.text-title{
+  color: #6F839A;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.text-subtitle{
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+}
