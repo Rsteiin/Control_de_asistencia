@@ -11,15 +11,13 @@ import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confi
 import { OkDialogComponent } from './shared/components/ok-dialog/ok-dialog.component';
 import { DialogFormComponent } from './shared/components/dialog-form/dialog-form.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ConfirmDialogComponent,
     OkDialogComponent,
-    DialogFormComponent
+    DialogFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +29,6 @@ import { DialogFormComponent } from './shared/components/dialog-form/dialog-form
   ],
   entryComponents:[ConfirmDialogComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { };
