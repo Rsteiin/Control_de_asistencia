@@ -32,6 +32,7 @@ tr.mat-row, tr.mat-footer-row {
   width: 100%; 
   display: flex; 
   flex-direction: row;
+  
   .panel1{
     width: 55%;
   }
@@ -50,4 +51,20 @@ tr.mat-row, tr.mat-footer-row {
   height: 200px;
   box-sizing: border-box;
   border: 1px #6F839A solid;
+}
+
+.resumen_title{
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.area-title{
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 14px;
+  font-weight: 400;
 }

@@ -54,28 +54,42 @@
       </div>
 
       <div class="panel2">
+        <div class="resumen_title">RESUMEN MENSUAL DE LA INSTITUCIÓN</div>
         <mat-grid-list cols="3" rowHeight="2:1">
           <mat-grid-tile>
-            <app-card></app-card>
+            <app-card [titulo] = "title_turnos" [valor] = "turnos" [icono]="icono_turnos"></app-card>
           </mat-grid-tile>
           <mat-grid-tile>
-            <app-card></app-card>
+            <app-card [titulo]="title_inasistencias" [valor]="inasistencias_totales" [icono]="icono_inasistencias"></app-card>
           </mat-grid-tile>
           <mat-grid-tile>
-            <app-card></app-card>
+            <app-card [titulo]="title_promerio_inasistencias" [valor]="promedio_inasistencias" [icono]="icono_promedio_inasistencias"></app-card>
           </mat-grid-tile>
         </mat-grid-list>
-        <mat-grid-list cols="3" rowHeight="2:1">
-          <mat-grid-tile>
-            <app-card></app-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <app-card></app-card>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <app-card></app-card>
-          </mat-grid-tile>
-        </mat-grid-list>
+        <br/>
+        <div *ngIf="area1 ==='VIDEOVIGILANCIA' || area1 === 'DESPACHO'">
+          <div class="resumen_title">{{area1}}</div>
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile>
+              <app-card></app-card>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <app-card></app-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+        
+        <div *ngIf="area2 ==='VIDEOVIGILANCIA' || area2 === 'DESPACHO'">
+          <div class="resumen_title">{{area2}}</div>
+          <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile>
+              <app-card></app-card>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <app-card></app-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
         <div>
         </div>
       </div>

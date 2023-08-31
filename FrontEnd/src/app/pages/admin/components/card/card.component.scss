@@ -5,6 +5,9 @@
   border-radius: 5px;
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 1500px) {
+    transform: scale(0.8);
+  }
 }
 
 .icon-container{
@@ -29,6 +32,7 @@
   color: #6F839A;
   font-size: 12px;
   font-weight: 600;
+  padding-bottom: 0.5rem;
 }
 
 .text-subtitle{
