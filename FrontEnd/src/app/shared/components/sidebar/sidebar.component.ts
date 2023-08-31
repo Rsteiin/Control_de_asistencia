@@ -31,6 +31,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   onInstitucion(institucion: string):void{
+    console.log(institucion)
     this.utilsSvc.setInstitucion(institucion);
     switch(institucion){
       case "A.M.T":

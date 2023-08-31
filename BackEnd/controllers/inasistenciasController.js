@@ -156,7 +156,7 @@ const inasistenciasController = {
 				inasistencias: datos,
 				turnos: numero * 3,
 				consolas_totales: consulta[1],
-				institucion: consulta[2][0].institucion
+				institucion: consulta[2][0]?.institucion
 			})
 			
 			
