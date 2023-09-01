@@ -21,9 +21,7 @@ export class TablaInasistenciaComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['consola', 'area', 'inasistencias', 'porcentaje'];
   dataSource = new MatTableDataSource([]);
 
-  //variables para mostrar las diferentes areas
-  area1: string  = "";
-  area2: string = "";
+
 
   //parametros para child 
   //turnos card
@@ -38,6 +36,15 @@ export class TablaInasistenciaComponent implements OnInit, OnDestroy {
   promedio_inasistencias: number|string = 0;
   title_promerio_inasistencias:string = "PORCENTAJE";
   icono_promedio_inasistencias:string = "percent";
+  //variables para mostrar las diferentes areas
+  //area1 variables 
+  area1: string  = "";
+  area1_inasistencias: number = 0;
+  area1_promedio: number = 0;
+  //area2 variables
+  area2: string = "";
+  area2_inasistencias: number = 0;
+  area2_promedio: number = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -57,14 +64,20 @@ export class TablaInasistenciaComponent implements OnInit, OnDestroy {
 
     this.suscription.add(
       this.tableSvc.getInasistenciasPorInstitucion(this.institucion).subscribe((res)=>{
+        let areas_response;
+        //datos generales 
         this.nombre = res.institucion;
         this.dataSource.data = res.inasistencias;
-        this.inasistencias_totales = calcularInasistencias(res.inasistencias)
         this.turnos = res.turnos * (res.consolas_totales[0].cantidad + (res.consolas_totales[1]?.cantidad?res.consolas_totales[1].cantidad:0));
         this.promedio_inasistencias = (this.inasistencias_totales/this.turnos).toFixed(2) + "%";
         this.area1 = res.consolas_totales[0].area
-        this.area2 = res.consolas_totales[1]? res.consolas_totales[1].area :" ";
-        console.log(this.area1,this.area2)
+        this.area2 = res.consolas_totales[1]? res.consolas_totales[1].area :"";
+        areas_response = calcularInasistencias(res.inasistencias, this.area1);
+        this.inasistencias_totales = areas_response?.total_inasistencias;
+        //areas
+
+        this.area1_inasistencias = areas_response.area1_inasistencias;
+        this.area2_inasistencias = areas_response.area2_inasistencias;
         this.isLoading = false;
       },err =>{
         console.log(err)
@@ -94,10 +107,18 @@ export class TablaInasistenciaComponent implements OnInit, OnDestroy {
   }
 }
 
-const calcularInasistencias = (inasistencias)=>{
+const calcularInasistencias = (inasistencias, area1)=>{
   let total_inasistencias = 0;
+  let area1_inasistencias = 0; 
+  let area2_inasistencias = 0;
   inasistencias.map((inasistencia)=>{
-    total_inasistencias = total_inasistencias + inasistencia.inasistencias
+    total_inasistencias = total_inasistencias + inasistencia.inasistencias;
+    if(inasistencia.area === area1){
+      area1_inasistencias = area1_inasistencias + inasistencia.inasistencias;
+    }else{
+      area2_inasistencias = area2_inasistencias + inasistencia.inasistencias;
+    }
   })
-  return total_inasistencias
+  
+  return {total_inasistencias, area1_inasistencias, area2_inasistencias}
 }
