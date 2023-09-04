@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         ));
 
         if(this.Role === "ADMINISTRADOR"){
-          this.router.navigate(['/administrador/usuarios'])
+          this.router.navigate(['/administrador'])
         }
 
         if(this.Role === "AGENTE"){

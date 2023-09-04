@@ -6,12 +6,16 @@ import { AdminComponent } from './admin.component';
 import { MaterialModule } from '@app/material.module';
 import { TablaInasistenciaComponent } from './tabla-inasistencia/tabla-inasistencia.component';
 import { CardComponent } from './components/card/card.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+import { PieChartTurnosComponent } from './charts/pie-chart-turnos/pie-chart-turnos.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     TablaInasistenciaComponent,
-    CardComponent
+    CardComponent,
+    PieChartComponent,
+    PieChartTurnosComponent
   ],
   imports: [
     CommonModule,
