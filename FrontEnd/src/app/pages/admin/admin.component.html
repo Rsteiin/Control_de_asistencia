@@ -6,6 +6,15 @@
       <div class="title-text">
         INSTITUCIÓN
       </div>
+      <div class="title-select">
+        <div class="filter-title">Año:</div>
+        <mat-form-field>
+          <mat-label>Valor seleccionado</mat-label>
+          <mat-select  [(value)]="selected_year">
+            <mat-option [value]="year.value" *ngFor="let year of years">{{ year.viewValue }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 		</div>
     <br/>
     <div class="content">
@@ -15,17 +24,35 @@
       <div class="content-filters">
         <div class="filter">
           <div class="filter-text">
-          Años
+            <div class="filter-title">Mes: </div>
+            <mat-form-field>
+              <mat-label>Valor seleccionado</mat-label>
+              <mat-select [(value)]="selected_month">
+                <mat-option [value]="mes.value" *ngFor="let mes of meses">{{ mes.viewValue }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
         <div class="filter">
           <div class="filter-text">
-          Instituciones
+            <div class="filter-title">Institución:</div>
+            <mat-form-field>
+              <mat-label>Valor seleccionado</mat-label>
+              <mat-select [(value)]="selected_turno">
+                <mat-option [value]="turno.value" *ngFor="let turno of turnos">{{ turno.viewValue }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
         <div class="filter">
           <div class="filter-text">
-          Area
+            <div class="filter-title">Turno: </div> 
+            <mat-form-field>
+              <mat-label>Valor seleccionado</mat-label>
+              <mat-select [(value)]="selected_turno">
+                <mat-option [value]="turno.value" *ngFor="let turno of turnos">{{ turno.viewValue }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
       </div>
