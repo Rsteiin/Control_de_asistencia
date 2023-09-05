@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import * as moment from 'moment';
 import { meses, turnos } from '@app/shared/constantes/constantes';
+import { InstitucionesService } from '@app/shared/services/instituciones.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
-  instituciones = [{viewValue:"Todas", value:"-1"}];
   container = "id"
   //select options 
   years = [];
@@ -22,8 +23,16 @@ export class AdminComponent implements OnInit {
   //turnos
   turnos = turnos;
   selected_turno = turnos[0].value;
+  //instituciones 
+  instituciones;
+  selected_institucion = 1;
 
-  constructor() { }
+  //destroy 
+  private destroy$ = new Subject<any>();
+
+  constructor(
+    private instSvc: InstitucionesService
+  ) { }
 
   ngOnInit(): void {
     //for years
@@ -32,7 +41,17 @@ export class AdminComponent implements OnInit {
     this.selected_year = new_years.actual_year;
     //for months
     this.selected_month = moment().format('MM');
-    
+    this.instSvc.Instituciones.pipe(takeUntil(this.destroy$)).subscribe((res)=>{
+      this.instituciones = res.map((institucion)=>({
+        value: institucion.institucion_id,
+        viewValue: institucion.siglas
+      }));
+    })
+    console.log(this.instituciones)
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next({});
+    this.destroy$.complete();
   }
 }
 

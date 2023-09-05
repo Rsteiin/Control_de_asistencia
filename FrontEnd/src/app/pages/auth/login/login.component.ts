@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { ThemePalette } from '@angular/material/core';
 import { Area, Zonal } from '@app/shared/models/user.interface';
+//service
+import { AuthService } from '../services/auth.service';
+import { InstitucionesService } from '@app/shared/services/instituciones.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +34,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     contrasena:['',[Validators.required,Validators.minLength(1)]]
   });
 
-  constructor( private authSvc:AuthService, 
+  constructor( 
+    private authSvc:AuthService, 
+    private instSvc :InstitucionesService,
     private fb:FormBuilder, 
     private router:Router) {
    };
@@ -78,7 +82,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         ));
 
         if(this.Role === "ADMINISTRADOR"){
-          this.router.navigate(['/administrador'])
+          this.instSvc.getInstituciones().subscribe(res=>{
+            this.router.navigate(['/administrador'])
+          })
         }
 
         if(this.Role === "AGENTE"){

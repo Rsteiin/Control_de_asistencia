@@ -38,8 +38,8 @@
             <div class="filter-title">Institución:</div>
             <mat-form-field>
               <mat-label>Valor seleccionado</mat-label>
-              <mat-select [(value)]="selected_turno">
-                <mat-option [value]="turno.value" *ngFor="let turno of turnos">{{ turno.viewValue }}</mat-option>
+              <mat-select [(value)]="selected_institucion">
+                <mat-option [value]="institucion.value" *ngFor="let institucion of instituciones">{{ institucion.viewValue }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
