@@ -15,7 +15,7 @@ export const meses = [
 
 export const turnos = [
   {value:"Todos", viewValue:"Todos"},
-  {value:"Mañana", viewValue:"Mañana"},
-  {value:"Tarde", viewValue:"Tarde"},
-  {value:"Velada", viewValue:"Velada"},
+  {value:"1", viewValue:"Mañana"},
+  {value:"2", viewValue:"Tarde"},
+  {value:"3", viewValue:"Velada"},
 ];

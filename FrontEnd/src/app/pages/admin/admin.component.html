@@ -7,11 +7,11 @@
         INSTITUCIÓN
       </div>
       <div class="title-select">
-        <div class="filter-title">Año:</div>
+        <div class="filter-title">Institución: </div>
         <mat-form-field>
           <mat-label>Valor seleccionado</mat-label>
-          <mat-select  [(value)]="selected_year">
-            <mat-option [value]="year.value" *ngFor="let year of years">{{ year.viewValue }}</mat-option>
+          <mat-select  [(value)]="selected_institucion">
+            <mat-option [value]="institucion.value" *ngFor="let institucion of instituciones">{{ institucion.viewValue }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -24,7 +24,18 @@
       <div class="content-filters">
         <div class="filter">
           <div class="filter-text">
-            <div class="filter-title">Mes: </div>
+            <div class="filter-title">Año: </div>
+            <mat-form-field>
+              <mat-label>Valor seleccionado</mat-label>
+              <mat-select [(value)]="selected_year">
+                <mat-option [value]="year.value" *ngFor="let year of years">{{ year.viewValue }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="filter">
+          <div class="filter-text">
+            <div class="filter-title">Mes:</div>
             <mat-form-field>
               <mat-label>Valor seleccionado</mat-label>
               <mat-select [(value)]="selected_month">
@@ -35,22 +46,11 @@
         </div>
         <div class="filter">
           <div class="filter-text">
-            <div class="filter-title">Institución:</div>
-            <mat-form-field>
-              <mat-label>Valor seleccionado</mat-label>
-              <mat-select [(value)]="selected_institucion">
-                <mat-option [value]="institucion.value" *ngFor="let institucion of instituciones">{{ institucion.viewValue }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="filter">
-          <div class="filter-text">
             <div class="filter-title">Turno: </div> 
             <mat-form-field>
               <mat-label>Valor seleccionado</mat-label>
               <mat-select [(value)]="selected_turno">
-                <mat-option [value]="turno.value" *ngFor="let turno of turnos">{{ turno.viewValue }}</mat-option>
+                <mat-option [value]="turno.value" *ngFor="let turno of turnos" (click)="onClickSelect()">{{ turno.viewValue }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

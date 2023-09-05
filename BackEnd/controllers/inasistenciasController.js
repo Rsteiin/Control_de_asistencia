@@ -25,6 +25,7 @@ const inasistenciasController = {
 			//comprobar si ya se guardo la asistencia por turno y usuario_id
 			let fecha_inicial;
 			let fecha_final;
+			let turno_insert;
 			let strSqlVerificar = `
 			SELECT COUNT(*) AS registros
 			FROM inasistencia i
@@ -34,16 +35,19 @@ const inasistenciasController = {
 			if(turno === "MAÑANA"){
 				fecha_inicial = moment().format("YYYY-MM-DD") +" 08:00:00";
 				fecha_final = moment().format("YYYY-MM-DD") +" 16:59:59";
+				turno_insert = 1;
 			}
 
 			if(turno === "TARDE"){
 				fecha_inicial = moment().format("YYYY-MM-DD") +" 17:00:00";
 				fecha_final = moment().format("YYYY-MM-DD") +" 23:59:59";
+				turno_insert = 2;
 			}
 
 			if(turno === "VELADA"){
 				fecha_inicial = moment().format("YYYY-MM-DD") +" 00:00:00";
 				fecha_final = moment().format("YYYY-MM-DD") +" 07:59:59";
+				turno_insert = 3;
 			}
 
 			const verification = await con.query(strSqlVerificar,[usuario_id, fecha_inicial, fecha_final]);
@@ -57,13 +61,17 @@ const inasistenciasController = {
 
 			const fecha_registro = moment().format('YYYY-MM-DD HH:mm:ss');
 
+
+
 			let insertInasistencia = `
-			INSERT INTO inasistencia (consola_id, usuario_id, fecha_de_creacion) values ( ?, ?, ?);
+			INSERT INTO inasistencia (consola_id, usuario_id, turno_id, fecha_de_creacion) values ( ?, ?, ?, ?);
 			`;
+
 
 			let variables = consolas.map((consola)=>([
 				consola.consola_id,
 				usuario_id,
+				turno_insert,
 				fecha_registro
 			]))
 			

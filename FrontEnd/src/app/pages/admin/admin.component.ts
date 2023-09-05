@@ -49,10 +49,18 @@ export class AdminComponent implements OnInit, OnDestroy {
     })
     console.log(this.instituciones)
   }
+  
   ngOnDestroy(): void {
     this.destroy$.next({});
     this.destroy$.complete();
   }
+  onClickSelect():void {
+    console.log(this.selected_month);
+    console.log(this.selected_year);
+    console.log(this.selected_institucion);
+    console.log(this.selected_turno);    
+  }
+
 }
 
 const getYears = () => {
