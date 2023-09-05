@@ -30,8 +30,7 @@ export class QuitoDespachoComponent implements OnInit {
 
   ngOnInit(): void {
     this.suscription.add(
-      this.AsisSrv.getConsolas(3).subscribe((res)=>{
-        console.log(res)
+      this.AsisSrv.getConsolas(2).subscribe((res)=>{
         this.consolas = res.consolas;
       },err => {
         if(err === 0){

@@ -27,7 +27,7 @@ const inasistenciasController = {
 			let fecha_final;
 			let strSqlVerificar = `
 			SELECT COUNT(*) AS registros
-			FROM inasistencias i
+			FROM inasistencia i
 			WHERE i.usuario_id = ?
 			AND fecha_de_creacion BETWEEN ? AND ? 
 			`;
@@ -58,7 +58,7 @@ const inasistenciasController = {
 			const fecha_registro = moment().format('YYYY-MM-DD HH:mm:ss');
 
 			let insertInasistencia = `
-			INSERT INTO inasistencias (consola_id, usuario_id, fecha_de_creacion) values ( ?, ?, ?);
+			INSERT INTO inasistencia (consola_id, usuario_id, fecha_de_creacion) values ( ?, ?, ?);
 			`;
 
 			let variables = consolas.map((consola)=>([
@@ -108,36 +108,38 @@ const inasistenciasController = {
 			let date_end = year + "-" + month + "-" + numero + " 23:59:59";
 
 			let strSql = `
-      SELECT 
-      numero,  
-      z.area,
-      (SELECT COUNT(*) 
-      FROM inasistencias i 
+      SELECT
+      c.numero,
+      a.nombre AS area,
+      (SELECT COUNT(*)
+      FROM inasistencia i
       WHERE i.consola_id = c.consola_id
-      AND i.fecha_de_creacion BETWEEN ? AND ? ) AS inasistencias
-      FROM consolas c
-      LEFT JOIN zonales z ON z.zonal_id = c.zonal_id  
-      WHERE siglas = ?
+      AND i.fecha_de_creacion BETWEEN ? AND ?) AS inasistencias
+      FROM consola c 
+      LEFT JOIN zonal z ON z.zonal_id = c.zonal_id 
+      LEFT JOIN area a ON a.area_id  = z.area_id 
+      LEFT JOIN institucion i2 ON i2.institucion_id =  c.institucion_id
+      WHERE i2.siglas = ?
       AND  0 < (SELECT COUNT(*) 
-      FROM inasistencias i 
+      FROM inasistencia i 
       WHERE i.consola_id = c.consola_id
-      AND i.fecha_de_creacion BETWEEN ? AND ?
-      ) 
+      AND i.fecha_de_creacion BETWEEN ? AND ?)
 			`;
 
 			let strSqlConsolas = `
-			SELECT z.area , count(*) AS cantidad
-      FROM consolas c
-    	LEFT JOIN zonales z on z.zonal_id = c.zonal_id 
-      WHERE siglas = ?
-      GROUP BY z.area 
+      SELECT a.nombre AS area, count(*) AS cantidad
+      FROM consola c
+      LEFT JOIN zonal z ON z.zonal_id = c.zonal_id 
+      LEFT JOIN area a ON a.area_id  = z.area_id 
+      LEFT JOIN institucion i ON i.institucion_id = c.institucion_id 
+      WHERE i.siglas = ?
+      GROUP BY a.nombre 
 			`;
 
 			let strSqlConfig = `
-			SELECT c.institucion
-			FROM consolas c
-			where c.siglas = ?
-			LIMIT 1
+      SELECT i.nombre AS institucion
+	  	FROM institucion i 
+	  	WHERE i.siglas = ?
 			`;
 
 			let variables =[[ date_begin, date_end, institucion, date_begin, date_end],[institucion], [institucion]];

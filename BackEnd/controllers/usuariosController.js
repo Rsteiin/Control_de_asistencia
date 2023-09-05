@@ -24,13 +24,16 @@ const usuariosController = {
       u.correo,
       u.rol,
       u.estado,
-      u.turno,
       u.grupo,
+      u.turno_id AS turno,
       z.zonal_id,
-      z.nombre AS zonal,
-      z.area 
-      FROM usuarios u
-      LEFT JOIN zonales z on z.zonal_id = u.zonal_id 
+      l.nombre AS zonal,
+      a.nombre AS area
+      FROM usuario u
+      LEFT JOIN zonal z ON z.zonal_id = u.zonal_id
+      LEFT JOIN area a ON a.area_id = z.zonal_id 
+      LEFT JOIN locacion l ON l.locacion_id = z.locacion_id 
+      LEFT JOIN turno t ON t.turno_id  = u.turno_id 
       ORDER BY u.fecha_de_creacion DESC
       `;
 
@@ -40,7 +43,7 @@ const usuariosController = {
       if(page === 1){
         let strSql = `
         SELECT COUNT (*) AS count
-        FROM usuarios u
+        FROM usuario u
         `;
         count = await con.query(strSql,[]);
       }
@@ -76,7 +79,7 @@ const usuariosController = {
     try{
       
       let strSql = `
-      UPDATE usuarios
+      UPDATE usuario
       SET estado = ?
       WHERE usuario_id = ?;
       `;
@@ -116,7 +119,7 @@ const usuariosController = {
     try{
       const strSqlVerifyMail = `
       SELECT u.correo, u.usuario_id 
-      FROM usuarios u 
+      FROM usuario u 
       WHERE u.correo = ? 
       `
       const verification = await con.query(strSqlVerifyMail, [correo]);
@@ -134,8 +137,8 @@ const usuariosController = {
 
         let variables = [ nombre.toUpperCase(), apellido.toUpperCase(), correo, zonal_id, turno, grupo ];
         let strSqlUpdate =`
-        UPDATE usuarios 
-        SET nombre = ?, apellido = ?, correo = ?, zonal_id = ?, turno = ?, grupo = ? 
+        UPDATE usuario 
+        SET nombre = ?, apellido = ?, correo = ?, zonal_id = ?, turno_id = ?, grupo = ? 
         
         `
         if(segundo_nombre){
@@ -167,14 +170,15 @@ const usuariosController = {
             message: "Correo ya registrado"
           })
         }
+//insert into usuario values (1, 1, 1, "ESTEBAN", "ANDRES", "ANDALUZ", "CARVAJAL","admin1@ecu.gob.ec","$2a$12$mZKvYhUrgwjlJAxdfBxOnOwCZZ4SOKrQYYx5FDiTJGMoO7/k35q4q","ADMINISTRADOR",1,"A",now());
 
         let strSqlInsert = `
-        INSERT INTO usuarios (zonal_id, nombre, segundo_nombre, apellido, segundo_apellido, correo, contrasena, rol, estado, turno, grupo, fecha_de_creacion)
-        VALUES( ?, ?, ?, ?, ?, ?, ?, "AGENTE", 1, ?, ?, now())
+        INSERT INTO usuario (zonal_id, turno_id, nombre, segundo_nombre, apellido, segundo_apellido, correo, contrasena, rol, estado, grupo, fecha_de_creacion)
+        VALUES( ?, ?, ?, ?, ?, ?, ?,?, "AGENTE", 1, ?, now())
         `
         let variables;
         await bcrypt.hash(contrasena, 10,).then((hash)=>{
-          variables = [zonal_id, nombre.toUpperCase(), segundo_nombre? segundo_nombre.toUpperCase():"", apellido.toUpperCase(), segundo_apellido ? segundo_apellido.toUpperCase(): "", correo, hash, turno, grupo ] ;
+          variables = [zonal_id, turno, nombre.toUpperCase(), segundo_nombre? segundo_nombre.toUpperCase():"", apellido.toUpperCase(), segundo_apellido ? segundo_apellido.toUpperCase(): "", correo, hash, grupo ] ;
           
         })
 

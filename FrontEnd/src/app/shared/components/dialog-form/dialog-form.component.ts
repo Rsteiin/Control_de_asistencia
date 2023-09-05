@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 interface Option {
-  value: string;
+  value: string|number;
   viewValue: string;
 }
 
@@ -19,9 +19,9 @@ interface Option {
 export class DialogFormComponent implements OnInit {
 
   turnos: Option[] = [
-    {value: 'MAÑANA', viewValue: 'MAÑANA'},
-    {value: 'TARDE', viewValue: 'TARDE'},
-    {value: 'VELADA', viewValue: 'VELADA'},
+    {value: 1, viewValue: 'MAÑANA'},
+    {value: 2, viewValue: 'TARDE'},
+    {value: 3, viewValue: 'VELADA'},
   ];
 
   grupos: Option[] = [
@@ -31,8 +31,8 @@ export class DialogFormComponent implements OnInit {
   ];
 
   zonales: Option[] = [
-    {value: '2', viewValue: 'QUITO - VIDEOVIGILANCIA'},
-    {value: '3', viewValue: 'QUITO - DESPACHO'},
+    {value: 1, viewValue: 'QUITO - VIDEOVIGILANCIA'},
+    {value: 2, viewValue: 'QUITO - DESPACHO'},
   ];
 
   hide = true;
@@ -63,7 +63,7 @@ export class DialogFormComponent implements OnInit {
         apellido:[this.data.user.apellido,[Validators.required,Validators.pattern(this.soloLetras), Validators.maxLength(20)]],
         segundo_apellido:[this.data.user.segundo_apellido],
         correo:[this.data.user.correo,[Validators.required,Validators.pattern(this.correoValido), Validators.maxLength(50)]],
-        zonal:[this.data.user.zonal_id.toString(),[Validators.required]],
+        zonal:[this.data.user.zonal_id,[Validators.required]],
         turno:[this.data.user.turno,[Validators.required]],
         grupo:[this.data.user.grupo,[Validators.required, Validators.maxLength(1)]],
       });

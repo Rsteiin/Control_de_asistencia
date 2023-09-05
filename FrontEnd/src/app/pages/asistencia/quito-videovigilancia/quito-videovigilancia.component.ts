@@ -30,7 +30,7 @@ export class QuitoVideovigilanciaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.suscription.add(
-      this.AsisSrv.getConsolas(2).subscribe((res)=>{
+      this.AsisSrv.getConsolas(1).subscribe((res)=>{
         console.log(res)
         this.consolas = res.consolas;
       },err => {
@@ -68,7 +68,6 @@ export class QuitoVideovigilanciaComponent implements OnInit, OnDestroy {
   }
 
   onSaveConsolas():void{
-    console.log(this.consolasSelected)
     const dialogRef = this.dialog.open(ConfirmDialogComponent,{
       width:'350px',
       data: {

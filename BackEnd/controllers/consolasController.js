@@ -14,9 +14,10 @@ const consolasController = {
     }
     try{
       let strSqlConsolas = `
-      SELECT c.consola_id, c.zonal_id, c.numero, c.institucion, c.siglas 
-      FROM consolas c 
-      WHERE c.zonal_id = ?   
+      SELECT c.consola_id, c.zonal_id, c.numero , i.nombre as institucion, i.siglas 
+      FROM consola c
+      left join institucion i on i.institucion_id = c.institucion_id
+      WHERE c.zonal_id = ?
       `;
 
       const consolas = await con.query(strSqlConsolas, [zonal_id]);

@@ -45,14 +45,17 @@ const apiController = {
       u.correo,
       u.rol,
       u.estado,
-      u.turno,
       u.contrasena,
+      t.nombre as turno,
       z.zonal_id,
-      z.nombre AS zonal,
-      z.area 
-      FROM usuarios u
-      LEFT JOIN zonales z on z.zonal_id = u.zonal_id 
-      WHERE correo = ?`;
+      l.nombre  AS zonal,
+      a.nombre as area 
+      FROM usuario u
+      LEFT JOIN zonal z ON z.zonal_id = u.zonal_id
+      LEFT JOIN area a ON a.area_id = z.zonal_id 
+      LEFT JOIN locacion l ON l.locacion_id = z.locacion_id 
+      LEFT JOIN turno t ON t.turno_id  = u.turno_id 
+      WHERE correo = ? `;
       
       let resultUser = await con.query(strSqlUser,[correo]);
 
