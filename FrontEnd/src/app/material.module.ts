@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const myModules = [
     MatToolbarModule,
@@ -42,7 +43,8 @@ const myModules = [
     MatSnackBarModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxChartsModule
 ];
 
 @NgModule({

@@ -10,6 +10,7 @@ const users = require("./routes/usuarios");
 const consolas = require("./routes/consolas");
 const inasistencias = require("./routes/inasistencias");
 const instituciones = require("./routes/instituciones");
+const dashboard = require("./routes/dashboard");
 //Start server with express
 const app = express();
 
@@ -42,6 +43,7 @@ app.use("/users", users);
 app.use("/consolas", consolas);
 app.use("/inasistencias", inasistencias);
 app.use("/institucion", instituciones);
+app.use("/dashboard", dashboard);
 
 //Get port number from .env
 const port = process.env.PORT_SERVER || 3000;

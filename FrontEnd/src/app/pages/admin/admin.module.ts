@@ -8,6 +8,7 @@ import { TablaInasistenciaComponent } from './tabla-inasistencia/tabla-inasisten
 import { CardComponent } from './components/card/card.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { PieChartTurnosComponent } from './charts/pie-chart-turnos/pie-chart-turnos.component';
+import { AcademyChartTurnosComponent } from './charts/academy-chart-turnos/academy-chart-turnos.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PieChartTurnosComponent } from './charts/pie-chart-turnos/pie-chart-tur
     TablaInasistenciaComponent,
     CardComponent,
     PieChartComponent,
-    PieChartTurnosComponent
+    PieChartTurnosComponent,
+    AcademyChartTurnosComponent
   ],
   imports: [
     CommonModule,
