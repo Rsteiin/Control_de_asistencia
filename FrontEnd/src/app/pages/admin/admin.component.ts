@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   //turnos
   turnos = turnos;
-  selected_turno = turnos[0].value;
+  selected_turno = [turnos[0].value, turnos[1].value, turnos[2].value];
   //instituciones 
   instituciones;
   selected_institucion = 1;
@@ -54,11 +54,13 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.destroy$.next({});
     this.destroy$.complete();
   }
-  onClickSelect():void {
+  onClickSelect(valor:any):void {
     console.log(this.selected_month);
     console.log(this.selected_year);
     console.log(this.selected_institucion);
-    console.log(this.selected_turno);    
+    console.log(this.selected_turno); 
+    console.log("valor",valor)   
+    
   }
 
 }

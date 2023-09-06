@@ -4,24 +4,28 @@
 <div class="container">
     <div class="content-title"> 
       <div class="title-text">
-        INSTITUCIÓN
-      </div>
-      <div class="title-select">
-        <div class="filter-title">Institución: </div>
-        <mat-form-field>
-          <mat-label>Valor seleccionado</mat-label>
-          <mat-select  [(value)]="selected_institucion">
-            <mat-option [value]="institucion.value" *ngFor="let institucion of instituciones">{{ institucion.viewValue }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        RESUMEN
       </div>
 		</div>
     <br/>
     <div class="content">
+      <br/>
       <div class="title-text">
         Seleccione uno o varios criterios
       </div>
+      <br/>
       <div class="content-filters">
+        <div class="filter">
+          <div class="filter-text">
+            <div class="filter-title">Institución: </div>
+            <mat-form-field>
+              <mat-label>Valor seleccionado</mat-label>
+              <mat-select [(value)]="selected_institucion">
+                <mat-option [value]="institucion.value" *ngFor="let institucion of instituciones">{{ institucion.viewValue }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
         <div class="filter">
           <div class="filter-text">
             <div class="filter-title">Año: </div>
@@ -49,18 +53,29 @@
             <div class="filter-title">Turno: </div> 
             <mat-form-field>
               <mat-label>Valor seleccionado</mat-label>
-              <mat-select [(value)]="selected_turno">
-                <mat-option [value]="turno.value" *ngFor="let turno of turnos" (click)="onClickSelect()">{{ turno.viewValue }}</mat-option>
+              <mat-select [value] = "selected_turno" multiple>
+                <mat-select-trigger>
+                  {{selected_turno.length > 0 ? turnos[0].viewValue : "" || ''}}
+                  <span *ngIf="(selected_turno?.length || 0) > 1" class="example-additional-selection">
+                    (+{{(selected_turno?.length || 0) - 1}} {{selected_turno?.length === 2 ? '' : ''}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option [value]="turno.value" *ngFor="let turno of turnos" (click)="onClickSelect(turno.value)">{{ turno.viewValue }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
+        <div>
+          
+        </div>
       </div>
-      <br/>
-      <div style="background-color: white; margin: 1rem;">
-        <app-academy-chart-turnos></app-academy-chart-turnos>
+      <div style="margin: 3rem; background-color: white;">
+        <div style="width: 100%; overflow: auto; padding: 2rem; box-sizing: border-box;" class="optimization-scroll">
+          <app-academy-chart-turnos></app-academy-chart-turnos>
+        </div>
       </div>
-      <div class="charts">
+      
+<!--       <div class="charts">
         <div class="pie-charts">
           <div class="pie">
             <div style="width: 100%; height: 10%;">
@@ -79,6 +94,6 @@
         <div class="column-chart">
           <app-academy-chart-turnos></app-academy-chart-turnos>
         </div>  
-      </div>
+      </div> -->
     </div>
 </div>

@@ -172,17 +172,16 @@ body {
     align-items: center;
     justify-content: center;
   }
-
-  body::-webkit-scrollbar, .mat-drawer-inner-container::-webkit-scrollbar {
-    width: 5px !important;               /* width of the entire scrollbar */
+}
+*{
+  &::-webkit-scrollbar{
+    width: 5px;               /* width of the entire scrollbar */
   }
-    
-  body::-webkit-scrollbar-track, .mat-drawer-inner-container::-webkit-scrollbar-track {
-    background: gray !important;        /* color of the tracking area */
+  &::-webkit-scrollbar-track{
+    background: gray ;        /* color of the tracking area */
   }
-    
-  body::-webkit-scrollbar-thumb, .mat-drawer-inner-container::-webkit-scrollbar-thumb {
-    background-color: white !important;    /* color of the scroll thumb */
-    border-radius: 25px !important;       /* roundness of the scroll thumb */
+  &::-webkit-scrollbar-thumb{
+    background-color: white;    /* color of the scroll thumb */
+    border-radius: 25px;       /* roundness of the scroll thumb */
   }
 }

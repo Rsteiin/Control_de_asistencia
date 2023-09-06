@@ -23,6 +23,7 @@
     "@antv/g2plot": "^2.4.31",
     "@auth0/angular-jwt": "^5.0.2",
     "@swimlane/ngx-charts": "^20.4.1",
+    "angular-material": "^1.2.5",
     "moment": "^2.29.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

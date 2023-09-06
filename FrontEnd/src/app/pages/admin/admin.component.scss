@@ -15,10 +15,11 @@
   flex-direction: row;
   justify-content: space-between;
   font-size: large;
+  align-items: center;
 }
 
 .title-text{
-  padding: 1.3rem 0rem 0.5rem 4rem;
+  padding: 0 0 0 3rem;
 }
 
 .title-select{
@@ -54,13 +55,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0rem 3rem;
+  font-size: 90%;
 }
 
 .filter{
-  width: 33%;
+  width: 18%;
   height: 100%;
   background-color: white;
-  margin: 1rem 2.5rem 1rem 2.5rem ;
 }
 
 .filter-text{
@@ -99,4 +102,26 @@
 .column-chart{
   width: 60%;
   height: 100%;
+}
+.optimization-scroll {
+  &::-webkit-scrollbar{
+    width: 4px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #505c754d !important;
+    border: px solid transparent;
+    border-radius: 50px;
+  }
+}
+.mat-form-field {
+  width: 100% !important;
+  text-align: center !important;
+  font-size: 100% !important;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
 }

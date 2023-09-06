@@ -230,10 +230,10 @@ export class AcademyChartTurnosComponent {
   yAxisLabel: string = 'Inasistencias';
   legendTitle: string = 'Turnos';
   colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+    domain: ['#7AA3E5', '#A8385D', '#A27EA8']
   }
 
-  legendPosition:LegendPosition = LegendPosition.Below 
+  legendPosition:LegendPosition = LegendPosition.Right
   
 
   constructor() {
